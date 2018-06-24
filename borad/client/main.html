@@ -1,25 +1,39 @@
 <head>
   <title>borad</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+  <div ng-app="app" ng-controller="appCtrl as appCtrl">
+    <login-buttons></login-buttons>
+    <hr>
+    <md-content class="md-padding">
+      <form ng-submit="add()">
+        <md-input-container flex>
+          <label>Title</label>
+          <input type="text" ng-model="title">
+        </md-input-container>
+        <input type="submit" value="add">
+      </form>
+    </md-content>
+    <hr>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <md-card ng-repeat="card in cards">
+            <md-button class="md-icon-button">
+              <md-icon class="material-icons">clear</md-icon>
+            </md-button>
+            <md-card-title>
+              <md-card-title-text ng-bind="card.title">
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>
+    </md-content>
+    <hr>
+    <pre>{{cards|json}}</pre>
+  </div>
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
-</template>
