@@ -5,7 +5,8 @@ import 'angular-aria';
 import 'angular-material';
 import 'angular-ui-router'
 import { Accounts } from 'meteor/accounts-base';
-import appCtrl from '../imports/modules/appCtrl.js';
+import appCtrl from '../imports/components/appCtrl.js';
+import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
@@ -16,4 +17,5 @@ angular.module('app', [
   'ngMaterial',
   'accounts.ui'
 ])
-.controller('appCtrl', appCtrl);
+.controller('appCtrl', appCtrl)
+.controller('cardEditCtrl', cardEditCtrl);
