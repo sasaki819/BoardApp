@@ -8,6 +8,7 @@
 
 <body>
   <div ng-app="app" ng-controller="appCtrl as appCtrl">
+    <md-icon md-font-icon="arrow_drop_down"></md-icon>
     <login-buttons></login-buttons>
     <form ng-submit="add()">
       <md-input-container flex>
@@ -19,10 +20,23 @@
     <hr>
     <div flex-xs flex-gt-xs="50" layout="column">
       <md-card ng-repeat="card in cards" ng-click="showDialog($event, card)">
-        <md-card-title>
-          <md-card-title-text ng-bind="card.title">
-          </md-card-title-text>
-        </md-card-title>
+        <div>
+          <input type="checkbox" ng-show="card.checked !== undefined">
+          <label ng-bind="card.title">
+          </label>
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+              <md-icon class="material-icons">arrow_drop_down</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                <md-button ng-click="addCheckBox(card)">
+                  <md-icon md-font-icon>check_box</md-icon>{{card.checked !== undefined ? 'remove' : 'add' }} checkbox
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
       </md-card>
     </div>
     <hr>
