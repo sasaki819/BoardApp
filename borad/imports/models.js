@@ -19,10 +19,7 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
         newCard.createdAt = new Date();
-        newCard.createdBy = {
-            id: Meteor.userId(),
-            name: Meteor.user().username
-        };
+        newCard.createdBy = Meteor.user().username;
         Cards.insert(newCard);
     },
     'cards.remove'(cardId) {

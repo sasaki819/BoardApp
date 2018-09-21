@@ -3,8 +3,9 @@ import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
 import { Cards } from '../models.js';
 import cardEditTemplate from './cardEdit/cardEdit.html';
+import createCardTemplate from './createCard/createCard.html';
 
-export default appCtrl = function ($scope, $mdDialog) {
+export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet) {
     $scope.subscribe('cards');
     $scope.test = "test";
     $scope.helpers({
@@ -41,5 +42,12 @@ export default appCtrl = function ($scope, $mdDialog) {
         console.log(card);
         card.checked = false;
         console.log(card);
+    };
+    $scope.showCreateCardPane = function() {
+        $mdBottomSheet.show({
+            templateUrl: 'imports/components/createCard/createCard.html',
+            controller: 'createCardCtrl',
+            parent: angular.element(document.getElementById('footer')),
+        });
     };
 };

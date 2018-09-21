@@ -17,6 +17,6 @@ ecmascript@0.11.1              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.3.1            # Server-side component of the `meteor shell` command
 
 angular-templates
-accounts-password
+accounts-password@1.5.1
 dotansimha:accounts-ui-angular
-npm-bcrypt
+npm-bcrypt@0.9.3
