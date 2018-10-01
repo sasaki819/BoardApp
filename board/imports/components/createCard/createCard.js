@@ -33,15 +33,33 @@ export default createCardCtrl = function ($scope, $mdBottomSheet) {
         $scope.content = '';
     }
     $scope.create = function() {
-        Meteor.call('cards.add', {
-            type: $scope.type,
-            title: $scope.title,
-            checked: false,
-            count: $scope.count,
-            step: $scope.step,
-            unit: $scope.unit,
-            content: $scope.content
-        });
+        let newCard;
+        switch ($scope.selectedType) {
+            case typeTodo:
+                newCard = {
+                    type: "Todo",
+                    title: $scope.title,
+                    checked: false
+                };
+                break;
+            case typeStock:
+                newCard = {
+                    type: "Stock",
+                    title: $scope.title,
+                    count: $scope.count,
+                    step: $scope.step,
+                    unit: $scope.unit
+                };
+                break;
+            case typeMemo:
+                newCard = {
+                    type: "Memo",
+                    title: $scope.title,
+                    content: $scope.content
+                };
+                break;
+        }
+        Meteor.call('cards.add', newCard);
         $scope.reset();
     };
 };
