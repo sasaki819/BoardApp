@@ -2,12 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-export const Cards = new Mongo.Collection('cards');
+export const cards = new Mongo.Collection('cards');
 
 if (Meteor.isServer) {
     // This code only runs on the server
     Meteor.publish('cards', function cardsPublication() {
-        return Cards.find();
+        return cards.find();
+    });
+    Meteor.publish('users', function usersPublication(){
+        return Meteor.users.find();
     });
 }
 
@@ -20,16 +23,16 @@ Meteor.methods({
         }
         newCard.createdAt = new Date();
         newCard.createdBy = Meteor.user().username;
-        Cards.insert(newCard);
+        cards.insert(newCard);
     },
     'cards.remove'(cardId) {
         check(cardId, String);
-        Cards.remove(cardId);
+        cards.remove(cardId);
     },
     'cards.setChecked'(cardId, setChecked) {
         check(cardId, String);
         check(setChecked, Boolean);
-        Cards.update(cardId, {
+        cards.update(cardId, {
             $set: {
                 checked: setChecked
             }

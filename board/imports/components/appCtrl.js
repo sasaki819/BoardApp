@@ -1,16 +1,16 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
-import { Cards } from '../models.js';
+import { cards } from '../models.js';
 import cardEditTemplate from './cardEdit/cardEdit.html';
 import createCardTemplate from './createCard/createCard.html';
 
-export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet) {
+export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav) {
     $scope.subscribe('cards');
     $scope.test = "test";
     $scope.helpers({
         cards() {
-            return Cards.find();
+            return cards.find();
         }
     });
     $scope.add = function () {
@@ -31,8 +31,8 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet) {
             parent: angular.element(document.body)
         });
     };
-    $scope.test = function () {
-        console.log("TEST ");
+    $scope.isLoggedIn = function() {
+        return Meteor.user();
     };
     $scope.openMenu = function($mdMenu, ev) {
         console.log("openMenu called");
@@ -42,6 +42,9 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet) {
         console.log(card);
         card.checked = false;
         console.log(card);
+    };
+    $scope.showUsersPane = function() {
+        $mdSidenav("users").open();
     };
     $scope.showCreateCardPane = function() {
         $mdBottomSheet.show({

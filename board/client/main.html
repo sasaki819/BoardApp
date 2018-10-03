@@ -51,14 +51,53 @@
     </div>
     <hr>
     <pre>{{cards|json}}</pre>
+    <div style="height: 64px">
+    </div>
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="users">
+      <md-content ng-controller="usersCtrl" layout-padding>
+        <md-button class="md-toolbar-tools md-icon-button md-primary" title="close" ng-click="close()">
+          <md-icon>
+            close
+          </md-icon>
+        </md-button>
+        <md-label class="md-primary">
+            User:
+        </md-toolbar>
+        <form layout="column">
+          <md-input-container>
+            <label for="testInput">Name</label>
+            <input type="text" id="testInput" ng-model="nameToLogin" md-autofocus>
+          </md-input-container>
+          <md-input-container>
+            <label for="testInput">Password</label>
+            <input type="text" id="testInput" ng-model="passwordToLogin">
+          </md-input-container>
+          <md-button type="submit" class="md-raised md-primary">
+            Login
+          </md-button>
+        </form>
+        <md-subheader>
+            Users:
+        </md-subheader>
+        <md-list>
+          <md-list-item ng-repeat="user in users" ng-click="null">
+            <md-icon>person</md-icon>
+            <p ng-bind="user.username"></p>
+          </md-list-item>
+        </md-list>
+        <hr>
+        <pre>{{users|json}}</pre>
+      </md-content>
+    </md-sidenav>
+
     <md-toolbar id="footer" class="footer" layout="row" layout-align="space-between center">
-      <!--<md-button>-->
-        <login-buttons class="login-button"></login-buttons>
-      <!--</md-button>-->
+      <md-button ng-click="showUsersPane()" title="User">
+        <md-icon class="material-icons">person</md-icon>
+      </md-button>
       <md-button title="Search & Filter">
         <md-icon class="material-icons">search</md-icon>
       </md-button>
-      <md-button ng-click="showCreateCardPane()" title="New card">
+      <md-button ng-click="showCreateCardPane()" title="New card" ng-disabled="!isLoggedIn()">
         <md-icon class="material-icons">add</md-icon>
       </md-button>
     </md-toolbar>
