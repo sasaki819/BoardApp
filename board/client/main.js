@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
-import 'angular-ui-router'
+import 'angular-ui-router';
 import { Accounts } from 'meteor/accounts-base';
 import appCtrl from '../imports/components/appCtrl.js';
 import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';
