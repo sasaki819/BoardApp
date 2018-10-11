@@ -8,15 +8,12 @@
 
 <body>
   <div ng-app="app" ng-controller="appCtrl as appCtrl">
+    <!--
     <i class="material-icons">menu</i>
     <i class="material-icons">arrow_drop_down</i>
     <i class="material-icons">widgets</i>
-    <i class="material-icons">star</i>
-    <i class="material-icons">star_border</i>
-    <i class="material-icons">lock</i>
-    <i class="material-icons">lock_open</i>
-    <i class="material-icons">link</i>
     <i class="material-icons">delete</i>
+    
     <login-buttons class="login-button"></login-buttons>
     <nav class="footer-leftpane">
       <form ng-submit="add()">
@@ -27,29 +24,10 @@
         <input type="submit" value="add">
       </form>
     </nav>
+    -->
+    <card-summary ng-repeat="card in cards" card="card">
+    </card-summary>
     <hr>
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card ng-repeat="card in cards" ng-click="showDialog($event, card)">
-        <div>
-          <input type="checkbox" ng-show="card.checked !== undefined">
-          <label ng-bind="card.title">
-          </label>
-          <md-menu>
-            <md-button class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
-              <md-icon class="material-icons">arrow_drop_down</md-icon>
-            </md-button>
-            <md-menu-content>
-              <md-menu-item>
-                <md-button ng-click="addCheckBox(card)">
-                  <md-icon md-font-icon>check_box</md-icon>{{card.checked !== undefined ? 'remove' : 'add' }} checkbox
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-          <i class="material-icons">delete</i>
-        </div>
-      </md-card>
-    </div>
     <hr>
     <pre>{{cards|json}}</pre>
     <div style="height: 64px">
@@ -62,32 +40,32 @@
           </md-icon>
         </md-button>
         <md-label class="md-primary">
-            User:
-        </md-toolbar>
-        <form layout="column">
-          <md-input-container>
-            <label for="testInput">Name</label>
-            <input type="text" id="testInput" ng-model="nameToLogin" md-autofocus>
-          </md-input-container>
-          <md-input-container>
-            <label for="testInput">Password</label>
-            <input type="text" id="testInput" ng-model="passwordToLogin">
-          </md-input-container>
-          <md-button type="submit" class="md-raised md-primary">
-            Login
-          </md-button>
-        </form>
-        <md-subheader>
+          User:
+          </md-toolbar>
+          <form layout="column">
+            <md-input-container>
+              <label for="testInput">Name</label>
+              <input type="text" id="testInput" ng-model="nameToLogin" md-select-on-focus md-autofocus>
+            </md-input-container>
+            <md-input-container>
+              <label for="testInput">Password</label>
+              <input type="text" id="testInput" ng-model="passwordToLogin">
+            </md-input-container>
+            <md-button type="submit" class="md-raised md-primary">
+              Login
+            </md-button>
+          </form>
+          <md-subheader>
             Users:
-        </md-subheader>
-        <md-list>
-          <md-list-item ng-repeat="user in users" ng-click="null">
-            <md-icon>person</md-icon>
-            <p ng-bind="user.username"></p>
-          </md-list-item>
-        </md-list>
-        <hr>
-        <pre>{{users|json}}</pre>
+          </md-subheader>
+          <md-list>
+            <md-list-item ng-repeat="user in users" ng-click="null">
+              <md-icon>person</md-icon>
+              <p ng-bind="user.username"></p>
+            </md-list-item>
+          </md-list>
+          <hr>
+          <pre>{{users|json}}</pre>
       </md-content>
     </md-sidenav>
 
