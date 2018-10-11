@@ -1,0 +1,26 @@
+<md-card>
+    <div class="cardToolbar" layout="row" layout-align="end start">
+        <toggle-icon flag="$ctrl.card.stared" on="'star'" off="'star_border'">
+        </toggle-icon>
+        <toggle-icon flag="$ctrl.card.protected" on="'lock'" off="'lock_open'">
+        </toggle-icon>
+        <md-button class="md-icon-button">
+            <i class="material-icons">link</i>
+        </md-button>
+        <md-button class="md-icon-button">
+            <i class="material-icons">delete</i>
+        </md-button>
+    </div>
+    <div layout="row" layout-align="space-between center">
+        <div>
+            <toggle-icon flag="$ctrl.card.checked" on="'check_box'" off="'check_box_outline_blank'">
+            </toggle-icon>
+        </div>
+        <div flex="100">
+            <div type="text" ng-bind="$ctrl.card.title" readonly style="width: 100%"></div>
+        </div>
+        <div>
+            - 0 +
+        </div>
+    </div>
+</md-card>
