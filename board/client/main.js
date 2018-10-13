@@ -28,6 +28,7 @@ angular.module('app').controller('createCardCtrl', createCardCtrl);
 import usersCtrl from '../imports/components/users/users.js';
 angular.module('app').controller('usersCtrl', usersCtrl);
 
-require("./toggleIcon/toggleIcon.js");
 require("./test/test.js");
 require("./cardSummary/cardSummary.js");
+require("./toggleIcon/toggleIcon.js");
+require("./counter/counter.js");

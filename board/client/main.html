@@ -14,7 +14,7 @@
     <i class="material-icons">widgets</i>
     <i class="material-icons">delete</i>
     
-    <login-buttons class="login-button"></login-buttons>
+    
     <nav class="footer-leftpane">
       <form ng-submit="add()">
         <md-input-container flex>
@@ -25,6 +25,7 @@
       </form>
     </nav>
     -->
+    <login-buttons class="login-button"></login-buttons>
     <card-summary ng-repeat="card in cards" card="card">
     </card-summary>
     <hr>
@@ -70,13 +71,13 @@
     </md-sidenav>
 
     <md-toolbar id="footer" class="footer" layout="row" layout-align="space-between center">
-      <md-button ng-click="showUsersPane()" title="User">
+      <md-button class="md-icon-button" ng-click="showUsersPane()" title="User">
         <md-icon class="material-icons">person</md-icon>
       </md-button>
-      <md-button title="Search & Filter">
+      <md-button class="md-icon-button" title="Search & Filter">
         <md-icon class="material-icons">search</md-icon>
       </md-button>
-      <md-button ng-click="showCreateCardPane()" title="New card" ng-disabled="!isLoggedIn()">
+      <md-button class="md-icon-button" ng-click="showCreateCardPane()" title="New card" ng-disabled="!isLoggedIn()">
         <md-icon class="material-icons">add</md-icon>
       </md-button>
     </md-toolbar>
