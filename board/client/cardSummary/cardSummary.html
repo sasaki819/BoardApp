@@ -5,22 +5,25 @@
         <toggle-icon flag="$ctrl.card.protected" on="'lock'" off="'lock_open'">
         </toggle-icon>
         <md-button class="md-icon-button">
-            <i class="material-icons">link</i>
+            <i class="material-icons">
+                link
+            </i>
         </md-button>
         <md-button class="md-icon-button">
-            <i class="material-icons">delete</i>
+            <i class="material-icons">
+                delete
+            </i>
         </md-button>
     </div>
     <div layout="row" layout-align="space-between center">
-        <div>
+        <div ng-show="$ctrl.card.checked !== undefined">
             <toggle-icon flag="$ctrl.card.checked" on="'check_box'" off="'check_box_outline_blank'">
             </toggle-icon>
         </div>
         <div flex="100">
             <div type="text" ng-bind="$ctrl.card.title" readonly style="width: 100%"></div>
         </div>
-        <div>
-            - 0 +
-        </div>
+        <counter count="$ctrl.card.count" ng-show="$ctrl.card.count !== undefined">
+        </counter>
     </div>
 </md-card>

@@ -6,7 +6,7 @@ angular.module("app").component("cardSummary",{
     bindings: {
         card: "=",
     },
-})
+});
 
 angular.module("app").controller("cardSummaryController", function ($scope) {
     $scope.message = "test"
