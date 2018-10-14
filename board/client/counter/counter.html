@@ -1,12 +1,12 @@
 <div layout="row" layout-align="end center">
-    <md-button class="md-icon-button" ng-click="increment()">
+    <md-button class="md-icon-button" ng-click="$ctrl.countUp()">
         <md-icon class="material-icons">
             add
         </md-icon>
     </md-button>
     <span ng-bind="$ctrl.count"></span>
     <span ng-bind="$ctrl.unit"></span>
-    <md-button class="md-icon-button" ng-click="decrement()">
+    <md-button class="md-icon-button" ng-click="$ctrl.countDown()">
         <md-icon class="material-icons">
             remove
         </md-icon>

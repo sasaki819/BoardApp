@@ -2,7 +2,15 @@ import counterTemplate from "./counter.html";
 
 angular.module("app").component("counter", {
     templateUrl: counterTemplate,
-    controller: "counterController",
+    controller: function () {
+        let ctrl = this;
+        ctrl.countUp = function () {
+            ctrl.onCountUp();
+        };
+        ctrl.countDown = function () {
+            ctrl.onCountDown();
+        };
+    },
     bindings: {
         count: "=",
         unit: "<",
@@ -10,12 +18,3 @@ angular.module("app").component("counter", {
         onCountDown: "&",
     },
 })
-
-angular.module("app").controller("counterController", function ($scope) {
-    $scope.increment = function () {
-        $scope.$ctrl.onCountUp();
-    };
-    $scope.decrement = function () {
-        $scope.$ctrl.onCountDown();
-    };
-});
