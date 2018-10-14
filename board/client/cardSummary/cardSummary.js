@@ -16,6 +16,12 @@ angular.module("app").component("cardSummary", {
         ctrl.onClickComplete = function () {
             Meteor.call("cards.update", ctrl.card._id, { checked: ctrl.card.checked });
         }
+        ctrl.onClickCountUp = function () {
+            Meteor.call("cards.update", ctrl.card._id, {count: ctrl.card.count+1});
+        };
+        ctrl.onClickCountDown = function () {
+            Meteor.call("cards.update", ctrl.card._id, {count: ctrl.card.count-1});
+        };
     },
     bindings: {
         card: "=",

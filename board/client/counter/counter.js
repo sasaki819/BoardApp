@@ -5,14 +5,17 @@ angular.module("app").component("counter", {
     controller: "counterController",
     bindings: {
         count: "=",
+        unit: "<",
+        onCountUp: "&",
+        onCountDown: "&",
     },
 })
 
 angular.module("app").controller("counterController", function ($scope) {
     $scope.increment = function () {
-        $scope.$ctrl.count++;
+        $scope.$ctrl.onCountUp();
     };
     $scope.decrement = function () {
-        $scope.$ctrl.count--;
+        $scope.$ctrl.onCountDown();
     };
 });

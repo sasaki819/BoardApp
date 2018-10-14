@@ -1,10 +1,14 @@
-<div layout="row">
+<div layout="row" layout-align="end center">
     <md-button class="md-icon-button" ng-click="increment()">
-        <md-icon class="material-icons">add</md-icon>
+        <md-icon class="material-icons">
+            add
+        </md-icon>
     </md-button>
-    <md-input type="number" ng-model="$ctrl.count">
-    </md-input>
+    <span ng-bind="$ctrl.count"></span>
+    <span ng-bind="$ctrl.unit"></span>
     <md-button class="md-icon-button" ng-click="decrement()">
-        <md-icon class="material-icons">remove</md-icon>
+        <md-icon class="material-icons">
+            remove
+        </md-icon>
     </md-button>
 </div>

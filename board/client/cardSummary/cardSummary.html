@@ -35,7 +35,12 @@
         <div flex="100">
             <div type="text" ng-bind="$ctrl.card.title" readonly style="width: 100%"></div>
         </div>
-        <counter count="$ctrl.card.count" ng-show="$ctrl.card.count !== undefined">
+        <counter
+            count="$ctrl.card.count"
+            unit="$ctrl.card.unit"
+            ng-show="$ctrl.card.count !== undefined"
+            on-count-up="$ctrl.onClickCountUp()"
+            on-count-down="$ctrl.onClickCountDown()">
         </counter>
     </div>
 </md-card>
