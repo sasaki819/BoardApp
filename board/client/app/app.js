@@ -1,16 +1,20 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
-import { cards } from '../models.js';
-import cardEditTemplate from './cardEdit/cardEdit.html';
-import createCardTemplate from './createCard/createCard.html';
+import { Mongo } from 'meteor/mongo';
+import { cards } from '../../imports/models.js';
+import cardEditTemplate from '../../imports/components/cardEdit/cardEdit.html';
 
-export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav) {
+angular.module("app").controller("appCtrl", function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav) {
     $scope.subscribe('cards');
     $scope.test = "test";
     $scope.helpers({
         cards() {
-            return cards.find();
+            return cards.find({}, {
+                sort: {
+                    createdAt: -1
+                }
+            });
         }
     });
     $scope.add = function () {
@@ -23,7 +27,7 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav
         console.log("showDialog invoked");
         return;
         $mdDialog.show({
-            templateUrl: 'imports/components/cardEdit/cardEdit.html',
+            templateUrl: cardEditTemplate,
             controller: cardEditCtrl,
             locals: card,
             tergetEvent: ev,
@@ -31,13 +35,13 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav
             parent: angular.element(document.body)
         });
     };
-    $scope.openMenu = function($mdMenu, ev) {
+    $scope.openMenu = function ($mdMenu, ev) {
         console.log("openMenu called");
         $mdMenu.open(ev);
     };
-    $scope.addCheckBox = function(card) {
+    $scope.addCheckBox = function (card) {
         console.log(card);
         card.checked = false;
         console.log(card);
     };
-};
+});

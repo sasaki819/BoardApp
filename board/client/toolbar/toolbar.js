@@ -1,4 +1,5 @@
 import toolbarTemplate from "./toolbar.html";
+import createCardTemplate from '../../imports/components/createCard/createCard.html';
 
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
@@ -9,7 +10,7 @@ angular.module("app").component("toolbar", {
         };
         ctrl.showCreateCardPane = function () {
             $mdBottomSheet.show({
-                templateUrl: 'imports/components/createCard/createCard.html',
+                templateUrl: createCardTemplate,
                 controller: 'createCardCtrl',
                 parent: angular.element(document.getElementById('footer')),
             });

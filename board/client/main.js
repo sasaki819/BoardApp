@@ -16,8 +16,8 @@ angular.module('app', [
   'accounts.ui'
 ]);
 
-import appCtrl from '../imports/components/appCtrl.js';
-angular.module('app').controller('appCtrl', appCtrl);
+//import appCtrl from '../imports/components/appCtrl.js';
+//angular.module('app').controller('appCtrl', appCtrl);
 
 import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';
 angular.module('app').controller('cardEditCtrl', cardEditCtrl);
@@ -28,7 +28,12 @@ angular.module('app').controller('createCardCtrl', createCardCtrl);
 import usersCtrl from '../imports/components/users/users.js';
 angular.module('app').controller('usersCtrl', usersCtrl);
 
+Meteor.startup(function(){
+  angular.bootstrap(document, ["app"]);
+});
+
 require("./test/test.js");
+require("./app/app.js");
 require("./cardSummary/cardSummary.js");
 require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
