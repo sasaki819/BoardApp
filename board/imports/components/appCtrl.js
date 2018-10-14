@@ -31,9 +31,6 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav
             parent: angular.element(document.body)
         });
     };
-    $scope.isLoggedIn = function() {
-        return Meteor.user();
-    };
     $scope.openMenu = function($mdMenu, ev) {
         console.log("openMenu called");
         $mdMenu.open(ev);
@@ -42,15 +39,5 @@ export default appCtrl = function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav
         console.log(card);
         card.checked = false;
         console.log(card);
-    };
-    $scope.showUsersPane = function() {
-        $mdSidenav("users").open();
-    };
-    $scope.showCreateCardPane = function() {
-        $mdBottomSheet.show({
-            templateUrl: 'imports/components/createCard/createCard.html',
-            controller: 'createCardCtrl',
-            parent: angular.element(document.getElementById('footer')),
-        });
     };
 };

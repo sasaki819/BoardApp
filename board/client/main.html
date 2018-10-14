@@ -29,8 +29,6 @@
     <card-summary ng-repeat="card in cards" card="card">
     </card-summary>
     <hr>
-    <test></test>
-    <hr>
     <pre>{{cards|json}}</pre>
     <div style="height: 64px">
     </div>
@@ -71,16 +69,6 @@
       </md-content>
     </md-sidenav>
 
-    <md-toolbar id="footer" class="footer" layout="row" layout-align="space-between center">
-      <md-button class="md-icon-button" ng-click="showUsersPane()" title="User">
-        <md-icon class="material-icons">person</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" title="Search & Filter">
-        <md-icon class="material-icons">search</md-icon>
-      </md-button>
-      <md-button class="md-icon-button" ng-click="showCreateCardPane()" title="New card" ng-disabled="!isLoggedIn()">
-        <md-icon class="material-icons">add</md-icon>
-      </md-button>
-    </md-toolbar>
+    <toolbar></toolbar>
   </div>
 </body>
