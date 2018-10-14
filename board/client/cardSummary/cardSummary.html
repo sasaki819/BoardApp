@@ -1,23 +1,35 @@
 <md-card>
-    <div class="cardToolbar" layout="row" layout-align="end start">
-        <toggle-icon flag="$ctrl.card.stared" on="'star'" off="'star_border'">
-        </toggle-icon>
-        <toggle-icon flag="$ctrl.card.protected" on="'lock'" off="'lock_open'">
-        </toggle-icon>
-        <md-button class="md-icon-button">
-            <i class="material-icons">
-                link
-            </i>
-        </md-button>
-        <md-button class="md-icon-button">
-            <i class="material-icons">
-                delete
-            </i>
-        </md-button>
+    <div class="cardToolbar" layout="row" layout-align="space-between start">
+        <div>
+            <toggle-icon flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()">
+            </toggle-icon>
+        </div>
+        <div flex="1">
+
+        </div>
+        <div>
+            <toggle-icon flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()">
+            </toggle-icon>
+            <md-button class="md-icon-button" title="show api url" aria-label=" ">
+                <md-icon class="material-icons">
+                    link
+                </md-icon>
+            </md-button>
+            <md-button class="md-icon-button" title="edit" aria-label=" ">
+                <md-icon class="material-icons">
+                    edit
+                </md-icon>
+            </md-button>
+            <md-button class="md-icon-button" title="delete" aria-label=" " ng-click="$ctrl.onCLickDelete()">
+                <md-icon class="material-icons">
+                    close
+                </md-icon>
+            </md-button>
+        </div>
     </div>
     <div layout="row" layout-align="space-between center">
         <div ng-show="$ctrl.card.checked !== undefined">
-            <toggle-icon flag="$ctrl.card.checked" on="'check_box'" off="'check_box_outline_blank'">
+            <toggle-icon flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank" on-toggle="$ctrl.onClickComplete()">
             </toggle-icon>
         </div>
         <div flex="100">

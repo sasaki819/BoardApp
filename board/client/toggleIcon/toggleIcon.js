@@ -2,21 +2,20 @@ import toggleIconTemplate from "./toggleIcon.html";
 
 angular.module("app").component("toggleIcon", {
     templateUrl: toggleIconTemplate,
-    controller: "toggleIconController",
+    controller: function ($timeout) {
+        let ctrl = this;
+        ctrl.onClick = function () {
+            ctrl.flag = !ctrl.flag;
+            ctrl.onToggle && $timeout(ctrl.onToggle);
+        };
+        ctrl.iconName = function() {
+            return ctrl.flag ? ctrl.on : ctrl.off;
+        };
+    },
     bindings: {
         flag: "=",
-        on: "<",
-        off: "<",
+        on: "@",
+        off: "@",
+        onToggle: "&",
     },
-})
-
-angular.module("app").controller("toggleIconController", function ($scope, $timeout) {
-    function setIconName() {
-        $scope.iconName = $scope.$ctrl.flag ? $scope.$ctrl.on : $scope.$ctrl.off;
-    };
-    $scope.onClick = function () {
-        $scope.$ctrl.flag = !$scope.$ctrl.flag;
-        setIconName();
-    };
-    $timeout(setIconName);
 });

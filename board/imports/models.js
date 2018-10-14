@@ -38,4 +38,11 @@ Meteor.methods({
             }
         });
     },
+    'cards.update'(cardId, data) {
+        check(cardId, String);
+        check(data, Object);
+        cards.update(cardId, {
+            $set: data
+        });
+    },
 });
