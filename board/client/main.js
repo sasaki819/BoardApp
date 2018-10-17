@@ -38,3 +38,4 @@ require("./cardSummary/cardSummary.js");
 require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
 require("./toolbar/toolbar.js");
+require("./accounts/accounts.js");

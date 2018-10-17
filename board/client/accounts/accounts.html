@@ -1,0 +1,55 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id='accounts'>
+    <md-content layout-padding>
+        <label>
+            user :
+        </label>
+        <form ng-if="!$ctrl.isLoggedIn()" ng-submit="$ctrl.login()" layout="column">
+            <md-input-container class="md-block">
+                <label>
+                    Name
+                </label>
+                <md-icon>
+                    person
+                </md-icon>
+                <input type="text" name="name" ng-model="$ctrl.name">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>
+                    Password
+                </label>
+                <md-icon>
+                    vpn_key
+                </md-icon>
+                <input type="password" name="password" ng-model="$ctrl.password">
+            </md-input-container>
+            <md-button type="submit" class="md-primary md-raised">
+                <md-icon>
+                    exit_to_app
+                </md-icon>
+                {{$ctrl.userExists($ctrl.name) ? 'Login' : "Signup"}}
+            </md-button>
+        </form>
+        <div ng-if="$ctrl.isLoggedIn()">
+            <md-list-item>
+                <md-icon>person</md-icon>
+                <p ng-bind="$ctrl.ausername()"></p>
+                <md-button class="md-raised md-icon-button" title="Logout" ng-click="$ctrl.logout()">
+                    <md-icon>
+                        power_settings_new
+                    </md-icon>
+                </md-button>
+            </md-list-item>
+        </div>
+        <label>
+            users :
+        </label>
+        <md-list>
+            <md-list-item ng-repeat="user in users">
+                <md-icon>
+                    person
+                </md-icon>
+                <p ng-bind="user.username"></p>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>

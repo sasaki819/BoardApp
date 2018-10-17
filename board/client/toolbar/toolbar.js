@@ -6,13 +6,12 @@ angular.module("app").component("toolbar", {
     controller: function ($mdSidenav, $mdBottomSheet) {
         let ctrl = this;
         ctrl.showUsersPane = function () {
-            $mdSidenav("users").open();
+            $mdSidenav("accounts").toggle();
         };
         ctrl.showCreateCardPane = function () {
             $mdBottomSheet.show({
                 templateUrl: createCardTemplate,
                 controller: 'createCardCtrl',
-                parent: angular.element(document.getElementById('footer')),
             });
         };
         ctrl.isLoggedIn = function(){
