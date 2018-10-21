@@ -1,0 +1,23 @@
+<md-dialog aria-label="card detail" layout="column">
+    <div layout="row" layout-align="space-between center">
+        <input type="checkbox">
+        <input type="text" ng-model="locals.title">
+        <button>+</button>
+        <span ng-model="locals.count"></span>
+        <button>-</button>
+    </div>
+    <div layout="row" layout-align="space-between center">
+        {{locals.createdBy.name}}@{{locals.createdAt}}
+    </div>
+    <div layout="row" layout-align="space-between center">
+        <md-button class="md-raised">
+            <md-icon class="material-icons">delete</md-icon>
+        </md-button>
+        <md-button class="md-raised">
+            <md-icon class="material-icons">cancel</md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary">
+            <md-icon class="material-icons">forward</md-icon>
+        </md-button>
+    </div>
+</md-dialog>

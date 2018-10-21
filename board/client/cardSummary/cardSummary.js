@@ -1,8 +1,9 @@
 import cardSummaryTemplate from "./cardSummary.html";
+import cardEditTemplate from "../cardEdit/cardEdit.html";
 
 angular.module("app").component("cardSummary", {
     templateUrl: cardSummaryTemplate,
-    controller: function ($timeout) {
+    controller: function ($timeout, $mdDialog) {
         let ctrl = this;
         ctrl.onClickFavorite = function () {
             Meteor.call("cards.update", ctrl.card._id, { stared: ctrl.card.stared });
@@ -21,6 +22,16 @@ angular.module("app").component("cardSummary", {
         };
         ctrl.onClickCountDown = function () {
             Meteor.call("cards.update", ctrl.card._id, {count: ctrl.card.count-1});
+        };
+        ctrl.onClickEdit = function () {
+            $mdDialog.show({
+                templateUrl: cardEditTemplate,
+                controller: "cardEditController",
+                // locals: card,
+                // tergetEvent: ev,
+                // clickOutsideToClose: true,
+                // parent: angular.element(document.body)
+            });
         };
     },
     bindings: {
