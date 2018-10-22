@@ -1,0 +1,208 @@
+[1mdiff --git a/board/client/main.js b/board/client/main.js[m
+[1mindex d413424..08fd524 100755[m
+[1m--- a/board/client/main.js[m
+[1m+++ b/board/client/main.js[m
+[36m@@ -22,8 +22,8 @@[m [mangular.module('app', [[m
+ //import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';[m
+ //angular.module('app').controller('cardEditCtrl', cardEditCtrl);[m
+ [m
+[31m-import createCardCtrl from '../imports/components/createCard/createCard.js';[m
+[31m-angular.module('app').controller('createCardCtrl', createCardCtrl);[m
+[32m+[m[32m//import createCardCtrl from '../imports/components/createCard/createCard.js';[m
+[32m+[m[32m//angular.module('app').controller('createCardCtrl', createCardCtrl);[m
+ [m
+ import usersCtrl from '../imports/components/users/users.js';[m
+ angular.module('app').controller('usersCtrl', usersCtrl);[m
+[36m@@ -40,3 +40,4 @@[m [mrequire("./counter/counter.js");[m
+ require("./toolbar/toolbar.js");[m
+ require("./accounts/accounts.js");[m
+ require("./cardEdit/cardEdit.js");[m
+[32m+[m[32mrequire("./createCard/createCard.js");[m
+[1mdiff --git a/board/client/toolbar/toolbar.js b/board/client/toolbar/toolbar.js[m
+[1mindex 0f5033f..fb9649c 100755[m
+[1m--- a/board/client/toolbar/toolbar.js[m
+[1m+++ b/board/client/toolbar/toolbar.js[m
+[36m@@ -1,5 +1,5 @@[m
+ import toolbarTemplate from "./toolbar.html";[m
+[31m-import createCardTemplate from '../../imports/components/createCard/createCard.html';[m
+[32m+[m[32mimport createCardTemplate from '../createCard/createCard.html';[m
+ [m
+ angular.module("app").component("toolbar", {[m
+     templateUrl: toolbarTemplate,[m
+[1mdiff --git a/board/imports/components/createCard/createCard.html b/board/imports/components/createCard/createCard.html[m
+[1mdeleted file mode 100644[m
+[1mindex caff602..0000000[m
+[1m--- a/board/imports/components/createCard/createCard.html[m
+[1m+++ /dev/null[m
+[36m@@ -1,98 +0,0 @@[m
+[31m-<md-bottom-sheet>[m
+[31m-        <form ng-submit="create()" layout="column">[m
+[31m-    <div layout="columns" layout-align="space-between center">[m
+[31m-        <md-subheader class="md-primary">[m
+[31m-            Comment Actions[m
+[31m-        </md-subheader>[m
+[31m-        <md-button class="md-icon-button md-primary" title="close" ng-click="close()">[m
+[31m-            <md-icon>[m
+[31m-                close[m
+[31m-            </md-icon>[m
+[31m-        </md-button>[m
+[31m-    </div>[m
+[31m-        <md-tabs md-dynamic-height md-selected="selectedType">[m
+[31m-            <md-tab>[m
+[31m-                <md-tab-label>[m
+[31m-                    <md-icon>[m
+[31m-                        check_box[m
+[31m-                    </md-icon>[m
+[31m-                    Task[m
+[31m-                </md-tab-label>[m
+[31m-                <md-tab-body>[m
+[31m-                    <md-input-container class="md-block">[m
+[31m-                        <label>[m
+[31m-                            Title[m
+[31m-                        </label>[m
+[31m-                        <input ng-model="title" required md-autofocus>[m
+[31m-                    </md-input-container>[m
+[31m-                </md-tab-body>[m
+[31m-            </md-tab>[m
+[31m-            <md-tab>[m
+[31m-                <md-tab-label>[m
+[31m-                    <md-icon>[m
+[31m-                        iso[m
+[31m-                    </md-icon>[m
+[31m-                    Stock[m
+[31m-                </md-tab-label>[m
+[31m-                <md-tab-body>[m
+[31m-                    <md-input-container class="md-block">[m
+[31m-                        <label>[m
+[31m-                            Title[m
+[31m-                        </label>[m
+[31m-                        <input ng-model="title" required md-autofocus>[m
+[31m-                    </md-input-container>[m
+[31m-                    <div layout-align="space-between">[m
+[31m-                        <md-input-container flex="30">[m
+[31m-                            <label>[m
+[31m-                                Count[m
+[31m-                            </label>[m
+[31m-                            <input type="number" ng-model="count" required min="0" step="{{step}}">[m
+[31m-                        </md-input-container>[m
+[31m-                        <md-input-container flex="30">[m
+[31m-                            <label>[m
+[31m-                                Step[m
+[31m-                            </label>[m
+[31m-                            <input type="number" ng-model="step" min="0.1" step="0.1">[m
+[31m-                        </md-input-container>[m
+[31m-                        <md-input-container flex="30">[m
+[31m-                            <label>[m
+[31m-                                Unit[m
+[31m-                            </label>[m
+[31m-                            <input ng-model="unit">[m
+[31m-                        </md-input-container>[m
+[31m-                    </div>[m
+[31m-                </md-tab-body>[m
+[31m-            </md-tab>[m
+[31m-            <md-tab>[m
+[31m-                <md-tab-label>[m
+[31m-                    <md-icon>[m
+[31m-                        message[m
+[31m-                    </md-icon>[m
+[31m-                    Memo[m
+[31m-                </md-tab-label>[m
+[31m-                <md-tab-body>[m
+[31m-                    <md-input-container class="md-block">[m
+[31m-                        <label>[m
+[31m-                            Title[m
+[31m-                        </label>[m
+[31m-                        <input ng-model="title" required md-autofocus>[m
+[31m-                    </md-input-container>[m
+[31m-                    <md-input-container class="md-block">[m
+[31m-                        <label>[m
+[31m-                            Content[m
+[31m-                        </label>[m
+[31m-                        <textarea ng-model="content" rows="3" max-rows="5"></textarea>[m
+[31m-                    </md-input-container>[m
+[31m-                </md-tab-body>[m
+[31m-            </md-tab>[m
+[31m-        </md-tabs>[m
+[31m-        <div layout="row" layout-align="end center">[m
+[31m-            <md-button class="md-raised" ng-click="reset()">[m
+[31m-                Reset[m
+[31m-            </md-button>[m
+[31m-            <md-button class="md-raised md-primary" type="submit" ng-disabled="checkError()">[m
+[31m-                Create[m
+[31m-            </md-button>[m
+[31m-        </div>[m
+[31m-    </form>[m
+[31m-</md-bottom-sheet>[m
+\ No newline at end of file[m
+[1mdiff --git a/board/imports/components/createCard/createCard.js b/board/imports/components/createCard/createCard.js[m
+[1mdeleted file mode 100755[m
+[1mindex dbed833..0000000[m
+[1m--- a/board/imports/components/createCard/createCard.js[m
+[1m+++ /dev/null[m
+[36m@@ -1,65 +0,0 @@[m
+[31m-export default createCardCtrl = function ($scope, $mdBottomSheet) {[m
+[31m-    const typeTodo = 0;[m
+[31m-    const typeStock = 1;[m
+[31m-    const typeMemo = 2;[m
+[31m-[m
+[31m-    $scope.title = '';[m
+[31m-    $scope.checked = false;[m
+[31m-    $scope.count = 1;[m
+[31m-    $scope.step = 1;[m
+[31m-    $scope.unit = '';[m
+[31m-    $scope.content = '';[m
+[31m-[m
+[31m-    $scope.close = $mdBottomSheet.cancel;[m
+[31m-    $scope.checkError = function() {[m
+[31m-        if (!$scope.title) {[m
+[31m-            return true;[m
+[31m-        }[m
+[31m-        if ($scope.selectedType === typeStock) {[m
+[31m-            if ($scope.count === undefined || $scope.count < 0) {[m
+[31m-                return true;[m
+[31m-            }[m
+[31m-            if ($scope.step === undefined || $scope.step <= 0) {[m
+[31m-                return true;[m
+[31m-            }[m
+[31m-        }[m
+[31m-        return false;[m
+[31m-    };[m
+[31m-    $scope.reset = function() {[m
+[31m-        $scope.title = '';[m
+[31m-        $scope.count = 1;[m
+[31m-        $scope.step = 1;[m
+[31m-        $scope.unit = '';[m
+[31m-        $scope.content = '';[m
+[31m-    }[m
+[31m-    $scope.create = function() {[m
+[31m-        let newCard;[m
+[31m-        switch ($scope.selectedType) {[m
+[31m-            case typeTodo:[m
+[31m-                newCard = {[m
+[31m-                    type: "Todo",[m
+[31m-                    title: $scope.title,[m
+[31m-                    checked: false[m
+[31m-                };[m
+[31m-                break;[m
+[31m-            case typeStock:[m
+[31m-                newCard = {[m
+[31m-                    type: "Stock",[m
+[31m-                    title: $scope.title,[m
+[31m-                    count: $scope.count,[m
+[31m-                    step: $scope.step,[m
+[31m-                    unit: $scope.unit[m
+[31m-                };[m
+[31m-                break;[m
+[31m-            case typeMemo:[m
+[31m-                newCard = {[m
+[31m-                    type: "Memo",[m
+[31m-                    title: $scope.title,[m
+[31m-                    content: $scope.content[m
+[31m-                };[m
+[31m-                break;[m
+[31m-        }[m
+[31m-        Meteor.call('cards.add', newCard);[m
+[31m-        $scope.reset();[m
+[31m-    };[m
+[31m-};[m
+\ No newline at end of file[m

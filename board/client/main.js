@@ -22,8 +22,8 @@ angular.module('app', [
 //import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';
 //angular.module('app').controller('cardEditCtrl', cardEditCtrl);
 
-import createCardCtrl from '../imports/components/createCard/createCard.js';
-angular.module('app').controller('createCardCtrl', createCardCtrl);
+//import createCardCtrl from '../imports/components/createCard/createCard.js';
+//angular.module('app').controller('createCardCtrl', createCardCtrl);
 
 import usersCtrl from '../imports/components/users/users.js';
 angular.module('app').controller('usersCtrl', usersCtrl);
@@ -40,3 +40,4 @@ require("./counter/counter.js");
 require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
 require("./cardEdit/cardEdit.js");
+require("./createCard/createCard.js");

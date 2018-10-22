@@ -1,5 +1,5 @@
 import toolbarTemplate from "./toolbar.html";
-import createCardTemplate from '../../imports/components/createCard/createCard.html';
+import createCardTemplate from '../createCard/createCard.html';
 
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
