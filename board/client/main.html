@@ -1,38 +1,21 @@
 <head>
   <title>board</title>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
 </head>
 
 <body>
-  <div ng-controller="appCtrl as appCtrl">
-    <!--
-    <i class="material-icons">menu</i>
-    <i class="material-icons">arrow_drop_down</i>
-    <i class="material-icons">widgets</i>
-    <i class="material-icons">delete</i>
-    
-    
-    <nav class="footer-leftpane">
-      <form ng-submit="add()">
-        <md-input-container flex>
-          <label>Title</label>
-          <input type="text" ng-model="title">
-        </md-input-container>
-        <input type="submit" value="add">
-      </form>
-    </nav>
-    -->
-    <login-buttons class="login-button"></login-buttons>
-    <card-summary ng-repeat="card in cards" card="card">
-    </card-summary>
-    <hr>
-    <pre>{{cards|json}}</pre>
-    <div style="height: 64px">
-    </div>
+  <div ng-controller="appCtrl">
+    <md-content>
+      <login-buttons class="login-button"></login-buttons>
+      <card-summary ng-repeat="card in cards" card="card">
+      </card-summary>
+      <div style="height: 64px">
+      </div>
+      <toolbar></toolbar>
+    </md-content>
+    <accounts></accounts>
   </div>
-  <accounts></accounts>
-  <toolbar></toolbar>
 </body>

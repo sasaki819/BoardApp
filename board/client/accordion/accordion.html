@@ -1,0 +1,15 @@
+<div>
+    <div layout="row" layout-align="space-between center" ng-click="$ctrl.toggle();" ng-attr-title="click to {{$ctrl.tooltip}} {{$ctrl.caption}}">
+        <div ng-bind="$ctrl.caption" class="md-block">
+        </div>
+        <div>
+            <md-icon ng-bind="$ctrl.iconName" aria-label="$ctrl.tooltip">
+            </md-icon>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div ng-show="$ctrl.show">
+        <ng-transclude>
+        </ng-transclude>
+    </div>
+</div>

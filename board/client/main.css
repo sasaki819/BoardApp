@@ -8,3 +8,21 @@
 md-next-button {
     color: rgba(0,0,0,0.87);
 }
+
+.online {
+    color: green;
+}
+.away {
+    color: orange;
+}
+.offline {
+    color: gray;
+}
+.badge {
+    position: absolute;
+    top: 8px;
+    left: 36px;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+}
