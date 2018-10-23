@@ -28,7 +28,7 @@ angular.module('app').controller('createCardCtrl', createCardCtrl);
 import usersCtrl from '../imports/components/users/users.js';
 angular.module('app').controller('usersCtrl', usersCtrl);
 
-Meteor.startup(function(){
+Meteor.startup(function () {
   angular.bootstrap(document, ["app"]);
 });
 
@@ -39,3 +39,10 @@ require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
 require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
+require("./accordion/accordion.js");
+
+
+Tracker.autorun(function () {
+  Meteor.status();
+  Meteor.call('ping');
+});

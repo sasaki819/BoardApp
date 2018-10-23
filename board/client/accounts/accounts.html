@@ -31,8 +31,10 @@
         </form>
         <div ng-if="$ctrl.isLoggedIn()">
             <md-list-item>
-                <md-icon>person</md-icon>
-                <p ng-bind="$ctrl.ausername()"></p>
+                <md-icon>
+                    person
+                </md-icon>
+                <p ng-bind="$ctrl.username()"></p>
                 <md-button class="md-raised md-icon-button" title="Logout" ng-click="$ctrl.logout()">
                     <md-icon>
                         power_settings_new
@@ -43,13 +45,43 @@
         <label>
             users :
         </label>
-        <md-list>
-            <md-list-item ng-repeat="user in users">
-                <md-icon>
-                    person
-                </md-icon>
-                <p ng-bind="user.username"></p>
+        <div>
+            <md-list-item ng-repeat="user in connections | orderBy:$ctrl.comparator">
+                <md-icon>person</md-icon>
+                <p>
+                    {{user.username}}
+                    <span class="badge" ng-class="online">
+                        ●
+                    </span>
+                </p>
             </md-list-item>
-        </md-list>
+            <md-list-item ng-repeat="user in onlineUsers">
+                <md-icon>person</md-icon>
+                <p>
+                    {{user}}
+                    <span class="badge online">
+                        ●
+                    </span>
+                </p>
+            </md-list-item>
+            <md-list-item ng-repeat="user in guestUsers track by $index">
+                <md-icon>person</md-icon>
+                <p>
+                    {{user}}
+                    <span class="badge online">
+                        ●
+                    </span>
+                </p>
+            </md-list-item>
+            <md-list-item ng-repeat="user in offlineUsers">
+                <md-icon>person</md-icon>
+                <p>
+                    {{user}}
+                    <span class="badge offline">
+                        ●
+                    </span>
+                </p>
+            </md-list-item>
+        </div>
     </md-content>
 </md-sidenav>
