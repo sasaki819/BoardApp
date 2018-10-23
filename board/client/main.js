@@ -39,15 +39,11 @@ require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
 require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
-<<<<<<< HEAD
 require("./cardEdit/cardEdit.js");
 require("./createCard/createCard.js");
-=======
 require("./accordion/accordion.js");
-
 
 Tracker.autorun(function () {
   Meteor.status();
   Meteor.call('ping');
 });
->>>>>>> sasaki
