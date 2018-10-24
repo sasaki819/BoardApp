@@ -66,4 +66,3 @@ angular.module("app").controller("createCardCtrl", function($mdBottomSheet){
         ctrl.reset();
     };
 });
-console.log("createCard.js has loaded");
