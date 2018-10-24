@@ -1,12 +1,12 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import { cards } from '../../imports/models.js';
-import cardEditTemplate from '../../imports/components/cardEdit/cardEdit.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
+import { cards } from "../../imports/models.js";
+import cardEditTemplate from "../../imports/components/cardEdit/cardEdit.html";
 
 angular.module("app").controller("appCtrl", function ($scope, $mdDialog, $mdBottomSheet, $mdSidenav) {
-    $scope.subscribe('cards');
+    $scope.subscribe("cards");
     $scope.test = "test";
     $scope.helpers({
         cards() {
@@ -20,7 +20,7 @@ angular.module("app").controller("appCtrl", function ($scope, $mdDialog, $mdBott
     $scope.add = function () {
         let newCard = {};
         newCard.title = $scope.title;
-        Meteor.call('cards.add', newCard);
+        Meteor.call("cards.add", newCard);
         $scope.title = "";
     };
     $scope.showDialog = function (ev, card) {

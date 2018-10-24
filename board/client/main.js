@@ -25,8 +25,8 @@ angular.module('app', [
 //import createCardCtrl from '../imports/components/createCard/createCard.js';
 //angular.module('app').controller('createCardCtrl', createCardCtrl);
 
-import usersCtrl from '../imports/components/users/users.js';
-angular.module('app').controller('usersCtrl', usersCtrl);
+import usersCtrl from "../imports/components/users/users.js";
+angular.module("app").controller("usersCtrl", usersCtrl);
 
 Meteor.startup(function () {
   angular.bootstrap(document, ["app"]);
@@ -37,13 +37,13 @@ require("./app/app.js");
 require("./cardSummary/cardSummary.js");
 require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
-require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
 require("./cardEdit/cardEdit.js");
 require("./createCard/createCard.js");
 require("./accordion/accordion.js");
+require("./toolbar/toolbar.js");
 
 Tracker.autorun(function () {
   Meteor.status();
-  Meteor.call('ping');
+  Meteor.call("ping");
 });

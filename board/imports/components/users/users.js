@@ -1,8 +1,8 @@
-import { Meteor } from 'meteor/meteor'
+import { Meteor } from "meteor/meteor";
 //import { users } from '../../models.js';
 
 export default usersCtrl = function ($scope, $mdSidenav) {
-    $scope.subscribe('users');
+    $scope.subscribe("users");
     $scope.helpers({
         users() {
             return Meteor.users.find();

@@ -1,4 +1,4 @@
-import { connections } from '../imports/models.js';
+import { connections } from "../imports/models.js";
 
 Meteor.startup(function () {
     console.log("meteor server started");

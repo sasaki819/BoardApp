@@ -1,68 +1,66 @@
-angular.module("app").controller("createCardCtrl", function($mdBottomSheet){
-    let ctrl = this;
-
+angular.module("app").controller("createCardCtrl", function($scope, $mdBottomSheet){
     const typeTodo = 0;
     const typeStock = 1;
     const typeMemo = 2;
 
-    ctrl.title = '';
-    ctrl.checked = false;
-    ctrl.count = 1;
-    ctrl.step = 1;
-    ctrl.unit = '';
-    ctrl.content = '';
+    $scope.title = '';
+    $scope.checked = false;
+    $scope.count = 1;
+    $scope.step = 1;
+    $scope.unit = '';
+    $scope.content = '';
 
-    ctrl.close = $mdBottomSheet.cancel;
-    ctrl.checkError = function() {
-        if (!ctrl.title) {
+    $scope.close = $mdBottomSheet.cancel;
+    $scope.checkError = function() {
+        if (!$scope.title) {
             return true;
         }
-        if (ctrl.selectedType === typeStock) {
-            if (ctrl.count === undefined || ctrl.count < 0) {
+        if ($scope.selectedType === typeStock) {
+            if ($scope.count === undefined || $scope.count < 0) {
                 return true;
             }
-            if (ctrl.step === undefined || ctrl.step <= 0) {
+            if ($scope.step === undefined || $scope.step <= 0) {
                 return true;
             }
         }
         return false;
     };
-    ctrl.reset = function() {
-        ctrl.title = '';
-        ctrl.count = 1;
-        ctrl.step = 1;
-        ctrl.unit = '';
-        ctrl.content = '';
+    $scope.reset = function() {
+        $scope.title = '';
+        $scope.count = 1;
+        $scope.step = 1;
+        $scope.unit = '';
+        $scope.content = '';
     }
-    ctrl.create = function() {
+    $scope.create = function() {
         let newCard;
-        switch (ctrl.selectedType) {
+        switch ($scope.selectedType) {
             case typeTodo:
                 newCard = {
                     type: "Todo",
-                    title: ctrl.title,
+                    title: $scope.title,
                     checked: false
                 };
                 break;
             case typeStock:
                 newCard = {
                     type: "Stock",
-                    title: ctrl.title,
-                    count: ctrl.count,
-                    step: ctrl.step,
-                    unit: ctrl.unit
+                    title: $scope.title,
+                    count: $scope.count,
+                    step: $scope.step,
+                    unit: $scope.unit
                 };
                 break;
             case typeMemo:
                 newCard = {
                     type: "Memo",
-                    title: ctrl.title,
-                    content: ctrl.content
+                    title: $scope.title,
+                    content: $scope.content
                 };
                 break;
         }
         Meteor.call('cards.add', newCard);
-        console.log("cards.add called");
-        ctrl.reset();
+        console.log("cards.add called", newCard);
+        $scope.reset();
     };
 });

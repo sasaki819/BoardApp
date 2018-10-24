@@ -1,5 +1,5 @@
 import toolbarTemplate from "./toolbar.html";
-import createCardTemplate from '../createCard/createCard.html';
+import createCardTemplate from "../createCard/createCard.html";
 
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
@@ -11,7 +11,7 @@ angular.module("app").component("toolbar", {
         ctrl.showCreateCardPane = function () {
             $mdBottomSheet.show({
                 templateUrl: createCardTemplate,
-                controller: 'createCardCtrl',
+                controller: "createCardCtrl",
             });
         };
         ctrl.isLoggedIn = function(){
