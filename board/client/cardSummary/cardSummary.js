@@ -3,7 +3,7 @@ import cardEditTemplate from "../cardEdit/cardEdit.html";
 
 angular.module("app").component("cardSummary", {
     templateUrl: cardSummaryTemplate,
-    controller: function ($mdDialog) {
+    controller: function ($scope,$mdDialog) {
         let ctrl = this;
         ctrl.onClickFavorite = function () {
             Meteor.call("cards.update", ctrl.card._id, { stared: ctrl.card.stared });
@@ -27,10 +27,10 @@ angular.module("app").component("cardSummary", {
             $mdDialog.show({
                 templateUrl: cardEditTemplate,
                 controller: "cardEditController",
-                // locals: card,
-                // tergetEvent: ev,
-                // clickOutsideToClose: true,
-                // parent: angular.element(document.body)
+                card: $scope.card,
+                tergetEvent: $scope.ev,
+                clickOutsideToClose: true,
+                parent: angular.element(document.body)
             });
         };
     },

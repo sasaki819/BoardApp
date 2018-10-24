@@ -48,7 +48,8 @@ angular.module("app").controller("createCardCtrl", function($scope, $mdBottomShe
                     title: $scope.title,
                     count: $scope.count,
                     step: $scope.step,
-                    unit: $scope.unit
+                    unit: $scope.unit,
+                    content: $scope.content
                 };
                 break;
             case typeMemo:
