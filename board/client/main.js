@@ -1,39 +1,22 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import 'angular-animate';
-import 'angular-aria';
-import 'angular-material';
-import 'angular-ui-router';
-import { Accounts } from 'meteor/accounts-base';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "angular-animate";
+import "angular-material";
+import { Accounts } from "meteor/accounts-base";
 
 Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY',
+  passwordSignupFields: "USERNAME_ONLY",
 });
 
-angular.module('app', [
+angular.module("app", [
   angularMeteor,
-  'ngMaterial',
-  'accounts.ui'
+  "ngMaterial",
+  "ngAnimate",
+  "accounts.ui"
 ]);
 
-//import appCtrl from '../imports/components/appCtrl.js';
-//angular.module('app').controller('appCtrl', appCtrl);
-
-//import cardEditCtrl from '../imports/components/cardEdit/cardEdit.js';
-//angular.module('app').controller('cardEditCtrl', cardEditCtrl);
-
-//import createCardCtrl from '../imports/components/createCard/createCard.js';
-//angular.module('app').controller('createCardCtrl', createCardCtrl);
-
-import usersCtrl from "../imports/components/users/users.js";
-angular.module("app").controller("usersCtrl", usersCtrl);
-
-Meteor.startup(function () {
-  angular.bootstrap(document, ["app"]);
-});
-
 require("./test/test.js");
-require("./app/app.js");
+require("./cardList/cardList.js");
 require("./cardSummary/cardSummary.js");
 require("./toggleIcon/toggleIcon.js");
 require("./counter/counter.js");
@@ -42,6 +25,10 @@ require("./cardEdit/cardEdit.js");
 require("./createCard/createCard.js");
 require("./accordion/accordion.js");
 require("./toolbar/toolbar.js");
+
+Meteor.startup(function () {
+  angular.bootstrap(document, ["app"]);
+});
 
 Tracker.autorun(function () {
   Meteor.status();

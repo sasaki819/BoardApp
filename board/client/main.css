@@ -5,19 +5,22 @@
     box-sizing: border-box;
 }
 
-md-next-button {
-    color: rgba(0,0,0,0.87);
+.slim-input {
+    margin: 0px;
 }
 
 .online {
     color: green;
 }
+
 .away {
     color: orange;
 }
+
 .offline {
     color: gray;
 }
+
 .badge {
     position: absolute;
     top: 8px;
@@ -25,4 +28,30 @@ md-next-button {
     border-radius: 50%;
     width: 1em;
     height: 1em;
+}
+
+
+.ng-enter,
+.ng-leave,
+.ng-move {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+.ng-enter {
+  opacity: 0;
+}
+.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.ng-leave {
+  opacity: 1;
+}
+.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.ng-move {
+  opacity: .5;
+}
+.ng-move.ng-move-active {
+  opacity: 1;
 }

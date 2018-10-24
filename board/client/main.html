@@ -7,15 +7,10 @@
 </head>
 
 <body>
-  <div ng-controller="appCtrl">
-    <md-content>
-      <login-buttons class="login-button"></login-buttons>
-      <card-summary ng-repeat="card in cards" card="card">
-      </card-summary>
-      <div style="height: 64px">
-      </div>
-      <toolbar></toolbar>
-    </md-content>
-    <accounts></accounts>
-  </div>
+  <accounts></accounts>
+  <md-content>
+    <card-list></card-list>
+    <toolbar></toolbar>
+  </md-content>
+  <div style="height:4em;">
 </body>

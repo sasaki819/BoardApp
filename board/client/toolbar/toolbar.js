@@ -1,5 +1,6 @@
 import toolbarTemplate from "./toolbar.html";
 import createCardTemplate from "../createCard/createCard.html";
+import searchTemplate from "../search/search.html";
 
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
@@ -7,6 +8,12 @@ angular.module("app").component("toolbar", {
         let ctrl = this;
         ctrl.showUsersPane = function () {
             $mdSidenav("accounts").toggle();
+        };
+        ctrl.showSearchPane = function () {
+            $mdBottomSheet.show({
+                templateUrl: searchTemplate,
+                controller: "createCardCtrl",
+            });
         };
         ctrl.showCreateCardPane = function () {
             $mdBottomSheet.show({
