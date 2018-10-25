@@ -1,22 +1,16 @@
-angular.module("app").controller("searchController", function ($scope, $mdBottomSheet) {
+import { Session } from 'meteor/session';
+
+angular.module("app").controller("searchController", function ($scope) {
     $scope.helpers({
-        keyword() {
+        searchKeyword() {
             return Session.get("search.keyword");
         }
     });
-    $scope.reset = () => $scope.keyword = "";
-    $scope.checkError = function () {
-        if (!$scope.title) {
-            return true;
-        }
-        if ($scope.selectedType === typeStock) {
-            if ($scope.count === undefined || $scope.count < 0) {
-                return true;
-            }
-            if ($scope.step === undefined || $scope.step <= 0) {
-                return true;
-            }
-        }
-        return false;
+    $scope.reset = function () {
+        $scope.keyword = "";
+    };
+    $scope.onChangeKeyword = function () {
+        Session.set("search.keyword", $scope.keyword);
+        console.log("changed keyword to:", $scope.keyword);
     };
 });

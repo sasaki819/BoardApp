@@ -25,6 +25,7 @@ require("./cardEdit/cardEdit.js");
 require("./createCard/createCard.js");
 require("./accordion/accordion.js");
 require("./toolbar/toolbar.js");
+require("./search/search.js");
 
 Meteor.startup(function () {
   angular.bootstrap(document, ["app"]);
