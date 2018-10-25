@@ -1,5 +1,6 @@
 import cardListTemplate from "./cardList.html";
 import { cards } from "../../imports/models.js";
+import { Session } from 'meteor/session';
 
 angular.module("app").component("cardList", {
     templateUrl: cardListTemplate,
@@ -12,7 +13,10 @@ angular.module("app").component("cardList", {
                         createdAt: -1
                     }
                 });
-            }
+            },
+            searchKeyword() {
+                return Session.get("search.keyword");
+            },
         });
     },
 });

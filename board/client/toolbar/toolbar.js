@@ -12,7 +12,7 @@ angular.module("app").component("toolbar", {
         ctrl.showSearchPane = function () {
             $mdBottomSheet.show({
                 templateUrl: searchTemplate,
-                controller: "createCardCtrl",
+                controller: "searchController",
             });
         };
         ctrl.showCreateCardPane = function () {
