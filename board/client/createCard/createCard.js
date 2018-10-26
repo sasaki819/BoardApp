@@ -39,9 +39,10 @@ angular.module("app").controller("createCardCtrl", function($scope, $mdBottomShe
                 newCard = {
                     type: "Todo",
                     title: $scope.title,
-                    checked: false
+                    checked: false,
+                    content: $scope.content
                 };
-                break;
+                break; 
             case typeStock:
                 newCard = {
                     type: "Stock",

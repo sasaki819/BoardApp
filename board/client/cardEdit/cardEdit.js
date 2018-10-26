@@ -1,6 +1,7 @@
-angular.module("app").controller("cardEditController", function($scope,$mdDialog){
+angular.module("app").controller("cardEditController", function ($scope, $mdDialog, card) {
 
-    $scope.showConfirm = function(ev) {
+    $scope.card = angular.copy(card);
+    $scope.showConfirm = function (ev) {
         var confirm = $mdDialog.confirm()
             .title('Confirmation')
             .textContent('Are you sure delete this card ?')
@@ -8,38 +9,32 @@ angular.module("app").controller("cardEditController", function($scope,$mdDialog
             .ok('Please do it!')
             .cancel('cancel!');
 
-        $mdDialog.show(confirm).then(function() {
-              $scope.deleteCard();
-            }, function() {
-              $scope.status = 'You decided to keep your debt.';
-            });
-          };
+        $mdDialog.show(confirm).then(function () {
+            $scope.deleteCard();
+        }, function () {
+            $scope.status = 'You decided to keep your debt.';
+        });
+    };
 
-    $scope.deleteCard = function(card) {
-        console.log("deleteCard called.", $scope._id);
+    $scope.onCLickDelete = function () {
+        console.log("deleteCard called.", $scope.card._id);
         Meteor.call("cards.remove", $scope.card._id);
-//        document.location.href = "main.html";
-//        close();
+        $mdDialog.hide();
+        //        document.location.href = "main.html";
+        //        close();
     };
 
     $scope.close = $mdDialog.cancel;
 
-    $scope.updateCard = function(){
-        let newCard;
-            newCard = {
-                type: $scope.type,
-                title: $scope.title,
-                content: $scope.content
-            };
-        console.log("updateCard called.", $scope.content);
-        Meteor.call("cards.update", newCard);
-
+    $scope.updateCard = function () {
+        Meteor.call("cards.update", $scope.card._id, $scope.card);
+        $mdDialog.hide();
     };
 
-    $scope.displayCounter = function(card) {
-        if($scope.type=="Stock"){
+    $scope.displayCounter = function () {
+        if ($scope.type == "Stock") {
             return true;
-        }else{
+        } else {
             return false;
         }
     };
