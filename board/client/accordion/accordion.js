@@ -13,7 +13,7 @@ angular.module("app").component("accordion", {
             ctrl.tooltip = ctrl.show ? "close" : "open";
             ctrl.iconName = ctrl.show ? "keyboard_arrow_up" : "keyboard_arrow_down";
         }
-        ctrl.show = true;
+        ctrl.show = false;
         updateProperties();
     },
     bindings: {

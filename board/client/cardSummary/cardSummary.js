@@ -23,14 +23,15 @@ angular.module("app").component("cardSummary", {
         ctrl.onClickCountDown = function () {
             Meteor.call("cards.update", ctrl.card._id, {count: ctrl.card.count-1});
         };
-        ctrl.onClickEdit = function () {
+        ctrl.onClickEdit = function ($event) {
             $mdDialog.show({
                 templateUrl: cardEditTemplate,
                 controller: "cardEditController",
-                card: $scope.card,
-                tergetEvent: $scope.ev,
+                locals: {
+                    card: ctrl.card,
+                },
+                tergetEvent: $event,
                 clickOutsideToClose: true,
-                parent: angular.element(document.body)
             });
         };
     },
