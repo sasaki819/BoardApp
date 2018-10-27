@@ -5,7 +5,7 @@ import searchTemplate from "../search/search.html";
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
     controller: function ($mdSidenav, $mdBottomSheet) {
-        let ctrl = this;
+        const ctrl = this;
         let isSearchPaneShown = false;
         let isCreateCardPaneShown = false;
         ctrl.showUsersPane = function () {

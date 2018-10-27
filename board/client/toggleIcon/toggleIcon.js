@@ -3,7 +3,7 @@ import toggleIconTemplate from "./toggleIcon.html";
 angular.module("app").component("toggleIcon", {
     templateUrl: toggleIconTemplate,
     controller: function ($timeout) {
-        let ctrl = this;
+        const ctrl = this;
         ctrl.onClick = function () {
             ctrl.flag = !ctrl.flag;
             ctrl.onToggle && $timeout(ctrl.onToggle);

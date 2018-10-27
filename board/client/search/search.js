@@ -4,7 +4,7 @@ import { Session } from 'meteor/session';
 angular.module("app").component("search", {
     templateUrl: searchemplate,
     controller: function ($scope) {
-        let ctrl = this;
+        const ctrl = this;
         ctrl.keyword = Session.get("search.keyword");
         $scope.helpers({
             searchKeyword() {

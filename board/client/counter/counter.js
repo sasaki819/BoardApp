@@ -3,7 +3,7 @@ import counterTemplate from "./counter.html";
 angular.module("app").component("counter", {
     templateUrl: counterTemplate,
     controller: function () {
-        let ctrl = this;
+        const ctrl = this;
         ctrl.countUp = function () {
             ctrl.onCountUp();
         };

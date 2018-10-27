@@ -4,7 +4,7 @@ import cardEditTemplate from "../cardEdit/cardEdit.html";
 angular.module("app").component("cardSummary", {
     templateUrl: cardSummaryTemplate,
     controller: function ($scope,$mdDialog) {
-        let ctrl = this;
+        const ctrl = this;
         ctrl.onClickFavorite = function () {
             Meteor.call("cards.update", ctrl.card._id, { stared: ctrl.card.stared });
         };
