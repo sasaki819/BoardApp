@@ -13,6 +13,11 @@ body {
 .footer-padding {
   height:56px;
 }
+.card {
+  display: inline-block;
+  min-width: 320px;
+  max-width: 640px;
+}
 
 /* UI controlls */
 .footer {
