@@ -6,22 +6,54 @@ angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
     controller: function ($mdSidenav, $mdBottomSheet) {
         let ctrl = this;
+        let isSearchPaneShown = false;
+        let isCreateCardPaneShown = false;
         ctrl.showUsersPane = function () {
+            $mdBottomSheet.hide();
             $mdSidenav("accounts").toggle();
         };
         ctrl.showSearchPane = function () {
-            $mdBottomSheet.show({
-                templateUrl: searchTemplate,
-                controller: "searchController",
-            });
+            $mdSidenav("accounts").close();
+            if (isCreateCardPaneShown) {
+                $mdBottomSheet.hide();
+            }
+            if (isSearchPaneShown) {
+                $mdBottomSheet.hide();
+            } else {
+                $mdBottomSheet.show({
+                    templateUrl: searchTemplate,
+                    controller: "searchController",
+                    disableBackdrop: true,
+                    isLockedOpen: true,
+                    disableParentScroll: false,
+                }).then(function () {
+                    isSearchPaneShown = false;
+                }).catch(function () {
+                    isSearchPaneShown = false;
+                });
+                isSearchPaneShown = true;
+            }
         };
         ctrl.showCreateCardPane = function () {
-            $mdBottomSheet.show({
-                templateUrl: createCardTemplate,
-                controller: "createCardCtrl",
-            });
+            $mdSidenav("accounts").close();
+            if (isSearchPaneShown) {
+                $mdBottomSheet.hide();
+            }
+            if (isCreateCardPaneShown) {
+                $mdBottomSheet.hide();
+            } else {
+                $mdBottomSheet.show({
+                    templateUrl: createCardTemplate,
+                    controller: "createCardCtrl",
+                }).then(function () {
+                    isCreateCardPaneShown = false;
+                }).catch(function () {
+                    isCreateCardPaneShown = false;
+                });
+                isCreateCardPaneShown = true;
+            }
         };
-        ctrl.isLoggedIn = function(){
+        ctrl.isLoggedIn = function () {
             return Meteor.user();
         };
     },

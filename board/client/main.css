@@ -1,26 +1,35 @@
+/* layout */
+body {
+  overflow-y:hidden;
+}
+.main-area {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:100%;
+  overflow-y:scroll;
+}
+.footer-padding {
+  height:56px;
+}
+
+/* UI controlls */
 .footer {
     position: fixed;
     bottom: 0px;
     width: 100%;
     box-sizing: border-box;
+    z-index: 100;
 }
 
-.slim-input {
-    margin: 0px;
-}
-
+/* user list */
 .online {
     color: green;
 }
-
-.away {
-    color: orange;
-}
-
 .offline {
     color: gray;
 }
-
 .badge {
     position: absolute;
     top: 8px;
@@ -30,7 +39,7 @@
     height: 1em;
 }
 
-
+/* ng-animate */
 .ng-enter,
 .ng-leave,
 .ng-move {
@@ -54,4 +63,9 @@
 }
 .ng-move.ng-move-active {
   opacity: 1;
+}
+
+/* experiment */
+.slim-input {
+  margin: 0px;
 }
