@@ -14,9 +14,6 @@ angular.module("app").component("toolbar", {
         };
         ctrl.showSearchPane = function () {
             $mdSidenav("accounts").close();
-            if (isCreateCardPaneShown) {
-                $mdBottomSheet.hide();
-            }
             if (isSearchPaneShown) {
                 $mdBottomSheet.hide();
             } else {
@@ -36,9 +33,6 @@ angular.module("app").component("toolbar", {
         };
         ctrl.showCreateCardPane = function () {
             $mdSidenav("accounts").close();
-            if (isSearchPaneShown) {
-                $mdBottomSheet.hide();
-            }
             if (isCreateCardPaneShown) {
                 $mdBottomSheet.hide();
             } else {
