@@ -1,14 +1,13 @@
 <md-bottom-sheet>
     <md-content>
         <div style="text-align:center;">
-            <md-input-container class="slim-input" flex="100">
+            <md-input-container class="slim-input">
                 <md-icon>
                     search
                 </md-icon>
-                <input ng-model="keyword" ng-change="onChangeKeyword()">
+                <input ng-model="$ctrl.keyword" ng-change="$ctrl.onChangeKeyword()" aria-label="search">
             </md-input-container>
         </div>
-        {{keyword}}
     </md-content>
     <div class="footer-padding"></div>
 </md-bottom-sheet>

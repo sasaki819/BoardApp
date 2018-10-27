@@ -18,8 +18,7 @@ angular.module("app").component("toolbar", {
                 $mdBottomSheet.hide();
             } else {
                 $mdBottomSheet.show({
-                    templateUrl: searchTemplate,
-                    controller: "searchController",
+                    template: "<search></search>",
                     disableBackdrop: true,
                     isLockedOpen: true,
                     disableParentScroll: false,
