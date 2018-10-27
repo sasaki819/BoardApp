@@ -4,7 +4,7 @@ angular.module("app").component("accordion", {
     transclude: true,
     templateUrl: accordionTemplate,
     controller: function () {
-        let ctrl = this;
+        const ctrl = this;
         this.toggle = function () {
             ctrl.show = !ctrl.show;
             updateProperties();

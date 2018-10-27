@@ -4,7 +4,7 @@ import accountsTemplate from "./accounts.html";
 angular.module("app").component("accounts", {
     templateUrl: accountsTemplate,
     controller: function ($scope) {
-        let ctrl = this;
+        const ctrl = this;
         $scope.subscribe('users');
         $scope.subscribe("connections");
         ctrl.isLoggedIn = function () {
