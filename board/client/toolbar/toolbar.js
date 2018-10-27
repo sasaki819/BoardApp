@@ -1,5 +1,5 @@
 import toolbarTemplate from "./toolbar.html";
-import createCardTemplate from "../createCard/createCard.html";
+import cardCreateTemplate from "../cardCreate/cardCreate.html";
 import searchTemplate from "../search/search.html";
 
 angular.module("app").component("toolbar", {
@@ -36,8 +36,7 @@ angular.module("app").component("toolbar", {
                 $mdBottomSheet.hide();
             } else {
                 $mdBottomSheet.show({
-                    templateUrl: createCardTemplate,
-                    controller: "createCardCtrl",
+                    template: "<card-create></card-create>",
                 }).then(function () {
                     isCreateCardPaneShown = false;
                 }).catch(function () {

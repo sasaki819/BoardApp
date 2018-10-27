@@ -16,16 +16,16 @@ angular.module("app", [
 ]);
 
 require("./test/test.js");
+require("./toolbar/toolbar.js");
+require("./accounts/accounts.js");
+require("./search/search.js");
+require("./cardCreate/cardCreate.js");
 require("./cardList/cardList.js");
 require("./cardSummary/cardSummary.js");
-require("./toggleIcon/toggleIcon.js");
-require("./counter/counter.js");
-require("./accounts/accounts.js");
 require("./cardEdit/cardEdit.js");
-require("./createCard/createCard.js");
+require("./counter/counter.js");
+require("./toggleIcon/toggleIcon.js");
 require("./accordion/accordion.js");
-require("./toolbar/toolbar.js");
-require("./search/search.js");
 
 Meteor.startup(function () {
   angular.bootstrap(document, ["app"]);
