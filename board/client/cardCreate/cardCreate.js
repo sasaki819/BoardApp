@@ -6,12 +6,16 @@ angular.module("app").component("cardCreate", {
         const typeStock = 1;
         const typeMemo = 2;
 
+        cardTag = new Array();
+
         $scope.title = '';
         $scope.checked = false;
         $scope.count = 1;
         $scope.step = 1;
         $scope.unit = '';
-        $scope.content = '';
+        $scope.stard = '';
+        $scope.private = '';
+        $scope.cardTag = [];
 
         $scope.close = $mdBottomSheet.cancel;
         $scope.checkError = function () {
@@ -43,7 +47,8 @@ angular.module("app").component("cardCreate", {
                         type: "Todo",
                         title: $scope.title,
                         checked: false,
-                        content: $scope.content
+                        content: $scope.content,         
+                        cardTag: []      
                     };
                     break;
                 case typeStock:
@@ -53,14 +58,16 @@ angular.module("app").component("cardCreate", {
                         count: $scope.count,
                         step: $scope.step,
                         unit: $scope.unit,
-                        content: $scope.content
+                        content: $scope.content,
+                        cardTag: []      
                     };
                     break;
                 case typeMemo:
                     newCard = {
                         type: "Memo",
                         title: $scope.title,
-                        content: $scope.content
+                        content: $scope.content,
+                        cardTag: []      
                     };
                     break;
             }

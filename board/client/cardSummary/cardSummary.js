@@ -31,7 +31,7 @@ angular.module("app").component("cardSummary", {
                     card: ctrl.card,
                 },
                 tergetEvent: $event,
-                clickOutsideToClose: true,
+                clickOutsideToClose: true
             });
         };
     },

@@ -2,38 +2,43 @@
     <md-content class="md-padding">
         <div class="cardToolbar" layout="row" layout-align="space-between start">
             <div>
-                <toggle-icon flag="stared" on="star" off="star_border" title="favorite" on-toggle="onClickFavorite()">
+                <toggle-icon flag="card.stared" on="star" off="star_border" title="favorite" on-toggle="onClickFavorite()">
                 </toggle-icon>
             </div>
             <div flex="1">
-
             </div>
             <div>
-                <toggle-icon flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()">
+                <toggle-icon flag="card.private" on="lock" off="lock_open" title="private" on-toggle="onClickPrivate()">
                 </toggle-icon>
                 <md-button class="md-icon-button" title="show api url(NOT IMPREMENTED YET)" aria-label=" " disabled>
                     <md-icon class="material-icons">
                         link
                     </md-icon>
                 </md-button>
-                <md-button class="md-icon-button" title="delete" aria-label=" " ng-click="onCLickDelete()">
+                <md-button class="md-icon-button" title="delete" aria-label=" " ng-click="showConfirm()">
                     <md-icon class="material-icons">
                         delete
                     </md-icon>
                 </md-button>
             </div>
         </div>
-        <div layout="row" layout-align="space-between center">
-            <input type="checkbox">
-            <input type="text" ng-model="card.title">
+        <div flex=100>
+        <toggle-icon flag="card.checked" on="check_box" off="check_box_outline_blank" on-toggle="onClickComplete()">
+        </toggle-icon>
         </div>
-    <counter
-        count="card.count"
-        unit="card.unit"
-        ng-show="card.count !== undefined"
-        on-count-up="onClickCountUp()"
-        on-count-down="onClickCountDown()">
-    </counter>
+        <div layout="row" layout-align="space-between center">
+        <md-input-container>
+            <label>title</label>
+            <input ng-model="card.title" type="text">
+        </md-input-container>
+        </div>
+        <counter
+            count="card.count"
+            unit="card.unit"
+            ng-show="card.count !== undefined"
+            on-count-up="onClickCountUp()"
+            on-count-down="onClickCountDown()">
+        </counter>
         <md-input-container>
             <!-- Use floating label instead of placeholder -->
             <label>content</label>
@@ -41,7 +46,15 @@
             <input ng-model="card.content" type="text">
         </md-input-container>
 
-
+        <form ng-submit="addTag()">
+            <md-chips ng-model="card.cardTag" name="cardTag" readonly="readonly"
+                      md-removable="removable" md-max-chips="5" placeholder="Enter a tag...">
+              <md-chip-template>
+                <strong>{{$chip}}</strong>
+              </md-chip-template>
+            </md-chips>
+        </form>
+                
         <accordion caption="'trivial details'">
             created at {{card.createdAt}} by {{card.createdBy}}
         </accordion>
