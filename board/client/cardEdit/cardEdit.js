@@ -1,6 +1,9 @@
 angular.module("app").controller("cardEditController", function ($scope, $mdDialog, card) {
-
     $scope.card = angular.copy(card);
+    if (!$scope.card.tags) {
+        $scope.card.tags = [];
+    }
+    $scope.card.cardTag = ['toilet'];
     $scope.showConfirm = function (ev) {
         var confirm = $mdDialog.confirm()
             .title('Confirmation')
@@ -15,18 +18,12 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             $scope.status = 'You decided to keep your debt.';
         });
     };
-
-    $scope.card.cardTag = ['toilet'];
-    $scope.addTag = function(){
-        // if(window.event.keyCode==13){
-        //     $scope.cardTag.push();
-        // }
-        // if (event.which === 13) {
-            console.log("addTag called.", $scope.card.cardTag);
-            $scope.card.cardTag.push($scope.card.cardTag);
-        // }
+    $scope.onClickCountUp = function () {
+        $scope.card.count++;
     };
-
+    $scope.onClickCountDown = function () {
+        $scope.card.count--;
+    };
     $scope.onCLickDelete = function () {
         console.log("deleteCard called.", $scope.card._id);
         Meteor.call("cards.remove", $scope.card._id);
@@ -47,15 +44,4 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             return false;
         }
     };
-
-    $scope.onClickFavorite = function () {
-        Meteor.call("cards.update", $scope.card._id, { stared: ctrl.card.stared });
-    };
-    $scope.onClickPrivate = function () {
-        Meteor.call("cards.update", $scope.card._id, { private: ctrl.card.private });
-    };
-    $scope.onClickComplete = function () {
-        Meteor.call("cards.update", $scope.card._id, { checked: ctrl.card.checked });
-    }
-
 });
