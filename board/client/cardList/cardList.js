@@ -10,6 +10,7 @@ angular.module("app").component("cardList", {
             cards() {
                 return cards.find({}, {
                     sort: {
+                        stared: -1,
                         createdAt: -1
                     }
                 });
