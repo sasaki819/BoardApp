@@ -18,7 +18,7 @@ angular.module("app", [
 require("./test/test.js");
 require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
-require("./search/search.js");
+require("./filter/filter.js");
 require("./cardCreate/cardCreate.js");
 require("./cardList/cardList.js");
 require("./cardSummary/cardSummary.js");
