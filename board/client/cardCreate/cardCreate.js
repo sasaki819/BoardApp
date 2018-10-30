@@ -16,6 +16,7 @@ angular.module("app").component("cardCreate", {
         $scope.stard = '';
         $scope.private = '';
         $scope.cardTag = [];
+        $scope.deleted = false;
 
         $scope.close = $mdBottomSheet.cancel;
         $scope.checkError = function () {
@@ -48,7 +49,8 @@ angular.module("app").component("cardCreate", {
                         title: $scope.title,
                         checked: false,
                         content: $scope.content,         
-                        cardTag: []      
+                        cardTag: [],      
+                        deleted: false
                     };
                     break;
                 case typeStock:
@@ -59,7 +61,8 @@ angular.module("app").component("cardCreate", {
                         step: $scope.step,
                         unit: $scope.unit,
                         content: $scope.content,
-                        cardTag: []      
+                        cardTag: [],   
+                        deleted: false   
                     };
                     break;
                 case typeMemo:
@@ -67,7 +70,8 @@ angular.module("app").component("cardCreate", {
                         type: "Memo",
                         title: $scope.title,
                         content: $scope.content,
-                        cardTag: []      
+                        cardTag: [], 
+                        deleted: false     
                     };
                     break;
             }

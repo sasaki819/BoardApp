@@ -7,15 +7,15 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.showConfirm = function (ev) {
         var confirm = $mdDialog.confirm()
             .title('Confirmation')
-            .textContent('Are you sure delete this card ?')
+            .textContent('Are you sure you delete this card?')
             .targetEvent(ev)
             .ok('Please do it!')
             .cancel('cancel!');
 
         $mdDialog.show(confirm).then(function () {
-            $scope.onCLickDelete();
+            $scope.onChangeDeletedFlag();
         }, function () {
-            $scope.status = 'You decided to keep your debt.';
+            
         });
     };
     $scope.onClickCountUp = function () {
@@ -24,9 +24,10 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.onClickCountDown = function () {
         $scope.card.count--;
     };
-    $scope.onCLickDelete = function () {
-        console.log("deleteCard called.", $scope.card._id);
-        Meteor.call("cards.remove", $scope.card._id);
+    $scope.onChangeDeletedFlag = function () {
+        console.log("onChangeDeletedFlag called.", $scope.card._id);
+        $scope.card.deleted = true;
+        Meteor.call("cards.update", $scope.card._id, $scope.card);
         $mdDialog.hide();
     };
 
