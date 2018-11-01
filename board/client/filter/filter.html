@@ -5,10 +5,56 @@
                 <md-icon>
                     search
                 </md-icon>
-                <input type="search" ng-model="$ctrl.keyword" ng-change="$ctrl.onChangeKeyword()" placeholder="keyword">
+                <input type="search" ng-model="$ctrl.keyword" ng-change="$ctrl.onChange()" placeholder="keyword"
+                    md-autofocus>
                 <div ng-messages="" ng-if="false"></div>
             </md-input-container>
         </div>
+        <accordion caption="'Type'">
+            <md-checkbox ng-model="$ctrl.showTask" ng-change="$ctrl.onChange()" class="md-primary">
+                Task
+            </md-checkbox>
+            <md-checkbox ng-model="$ctrl.showStock" ng-change="$ctrl.onChange()" class="md-primary">
+                Stock
+            </md-checkbox>
+            <md-checkbox ng-model="$ctrl.showMemo" ng-change="$ctrl.onChange()" class="md-primary">
+                Memo
+            </md-checkbox>
+        </accordion>
+        <accordion caption="'Status'">
+            <md-checkbox ng-model="$ctrl.showCompleteTask" ng-change="$ctrl.onChange()" class="md-primary" ng-disabled="!$ctrl.showTask">
+                CompleteTask
+            </md-checkbox>
+            <md-checkbox ng-model="$ctrl.showIncompleteTask" ng-change="$ctrl.onChange()" class="md-primary" ng-disabled="!$ctrl.showTask">
+                IncompleteTask
+            </md-checkbox>
+            <md-checkbox ng-model="$ctrl.showPrivate" ng-change="$ctrl.onChange()" class="md-primary">
+                Private
+            </md-checkbox>
+            <md-checkbox ng-model="$ctrl.showDeleted" ng-change="$ctrl.onChange()" class="md-primary">
+                Deleted
+            </md-checkbox>
+        </accordion>
+        <accordion caption="'Tags :'">
+            <md-chips ng-model="$ctrl.tags" placeholder="tags" md-add-on-blur md-enable-chip-edit="true" ng-change="$ctrl.onChange()">
+            </md-chips>
+        </accordion>
+        <accordion caption="'Sort'">
+            <md-checkbox ng-model="$ctrl.sortStared" ng-change="$ctrl.onChange()" class="md-primary">
+                Stared on top
+            </md-checkbox>
+            <md-radio-group ng-model="$ctrl.sortBy" layout="row" ng-change="$ctrl.onChange()" class="md-primary">
+                <md-radio-button value="updatedAt">
+                    updated
+                </md-radio-button>
+                <md-radio-button value="createdAt">
+                    created
+                </md-radio-button>
+                <md-radio-button value="type">
+                    type
+                </md-radio-button>
+            </md-radio-group>
+        </accordion>
     </md-content>
     <div class="footer-padding"></div>
 </md-bottom-sheet>

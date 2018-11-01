@@ -25,6 +25,7 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
         newCard.createdAt = new Date();
+        newCard.updatedAt = new Date();
         newCard.createdBy = Meteor.user().username;
         cards.insert(newCard);
     },
@@ -44,6 +45,7 @@ Meteor.methods({
     "cards.update"(cardId, data) {
         check(cardId, String);
         check(data, Object);
+        data.updatedAt = new Date();
         cards.update(cardId, {
             $set: data
         });

@@ -1,5 +1,5 @@
-<div>
-    <div layout="row" layout-align="space-between center" ng-click="$ctrl.toggle();" ng-attr-title="click to {{$ctrl.tooltip}} {{$ctrl.caption}}">
+<md-content>
+    <div class="accordion-header" layout="row" layout-align="space-between center" ng-click="$ctrl.toggle();" ng-attr-title="click to {{$ctrl.tooltip}} {{$ctrl.caption}}">
         <div ng-bind="$ctrl.caption" class="md-block">
         </div>
         <div>
@@ -8,8 +8,8 @@
         </div>
     </div>
     <md-divider></md-divider>
-    <div ng-show="$ctrl.show">
+    <div style="padding: 1em 1em 0px 1em;" ng-show="$ctrl.show">
         <ng-transclude>
         </ng-transclude>
     </div>
-</div>
+</md-content>

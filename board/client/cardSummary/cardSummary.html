@@ -32,7 +32,7 @@
             <toggle-icon flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank" on-toggle="$ctrl.onClickComplete()">
             </toggle-icon>
         </div>
-        <md-truncate flex="100" ng-bind="$ctrl.card.title"></md-truncate>
+        <md-truncate class="card-title" flex="100" ng-bind="$ctrl.card.title"></md-truncate>
         <counter
             count="$ctrl.card.count"
             unit="$ctrl.card.unit"

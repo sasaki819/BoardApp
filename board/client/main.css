@@ -15,8 +15,8 @@ body {
 }
 .card {
   display: inline-block;
-  min-width: 160px;
-  max-width: 640px;
+  min-width: 344px; /* 344 fit's width of xperia, also 164px(half size) may nice*/
+  max-width: 496px; /* 496 fit's height of xperia */
 }
 
 /* UI controlls */
@@ -27,7 +27,23 @@ body {
     box-sizing: border-box;
     z-index: 100;
 }
-
+.card-title {
+  margin: 0.5em 1em;
+}
+.filter-option-group {
+  display:inline-block;
+  padding: 1em 0.5em 0 0.5em;
+  margin: 0.5em;
+  border: solid thin rgba(0,0,0,0.87);
+}
+.accordion-header {
+  padding: 0px 8px;
+  margin: 2px;
+}
+.accordion-header:hover {
+  color:rgba(0,0,0,0.87);
+  background-color:rgba(63,81,181,0.3);
+}
 /* user list */
 .online {
     color: green;
@@ -45,11 +61,17 @@ body {
 }
 
 /* ng-animate */
-.ng-enter,
-.ng-leave,
+.ng-enter{
+  -webkit-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+.ng-leave{
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
 .ng-move {
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .ng-enter {
   opacity: 0;
@@ -72,13 +94,19 @@ body {
 
 /* angular material ajustments */
 .md-errors-spacer {
-  display: none;
+  display: none !important;
 }
-.md-button.md-icon-button {
+/* .md-button.md-icon-button {
   margin: 0px !important;
   padding: 0px !important;
-  height: 32px !important;
-  width: 32px !important;
+  height: 24px !important;
+  width: 24px !important;
+} */
+md-toolbar._md-toolbar-transitions {
+  padding: 0px 1em;
+}
+md-radio-group {
+  margin-bottom: 16px;
 }
 /* experiment */
 .slim-input {
