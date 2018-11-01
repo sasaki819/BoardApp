@@ -13,4 +13,17 @@
   </div>
   <toolbar class="footer"></toolbar>
   <accounts></accounts>
+  <div style="position:fixed;bottom:60px;right:4px;"><span id="width"></span> px x <span id="height"></span> px</div>
+  <script type="text/javascript">
+    window.setInterval(function resize() {
+      let heightOutput = document.querySelector('#height');
+      if (heightOutput) {
+        heightOutput.textContent = window.innerHeight;
+      };
+      let widthOutput = document.querySelector('#width');
+      if (widthOutput) {
+        widthOutput.textContent = window.innerWidth;
+      };
+    }, 3200);
+  </script>
 </body>
