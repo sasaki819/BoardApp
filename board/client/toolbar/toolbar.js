@@ -1,33 +1,30 @@
 import toolbarTemplate from "./toolbar.html";
-import cardCreateTemplate from "../cardCreate/cardCreate.html";
-import searchTemplate from "../search/search.html";
-
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
     controller: function ($mdSidenav, $mdBottomSheet) {
         const ctrl = this;
-        let isSearchPaneShown = false;
+        let isFilterPaneShown = false;
         let isCreateCardPaneShown = false;
         ctrl.showUsersPane = function () {
             $mdBottomSheet.hide();
             $mdSidenav("accounts").toggle();
         };
-        ctrl.showSearchPane = function () {
+        ctrl.showFilterPane = function () {
             $mdSidenav("accounts").close();
-            if (isSearchPaneShown) {
+            if (isFilterPaneShown) {
                 $mdBottomSheet.hide();
             } else {
                 $mdBottomSheet.show({
-                    template: "<search></search>",
+                    template: "<filter></filter>",
                     disableBackdrop: true,
                     isLockedOpen: true,
                     disableParentScroll: false,
                 }).then(function () {
-                    isSearchPaneShown = false;
+                    isFilterPaneShown = false;
                 }).catch(function () {
-                    isSearchPaneShown = false;
+                    isFilterPaneShown = false;
                 });
-                isSearchPaneShown = true;
+                isFilterPaneShown = true;
             }
         };
         ctrl.showCreateCardPane = function () {

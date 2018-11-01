@@ -1,11 +1,12 @@
 <md-bottom-sheet>
     <md-content>
         <div style="text-align:center;">
-            <md-input-container class="slim-input">
+            <md-input-container>
                 <md-icon>
                     search
                 </md-icon>
-                <input ng-model="$ctrl.keyword" ng-change="$ctrl.onChangeKeyword()" aria-label="search">
+                <input type="search" ng-model="$ctrl.keyword" ng-change="$ctrl.onChangeKeyword()" placeholder="keyword">
+                <div ng-messages="" ng-if="false"></div>
             </md-input-container>
         </div>
     </md-content>
