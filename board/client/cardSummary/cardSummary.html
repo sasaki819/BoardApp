@@ -1,4 +1,4 @@
-<md-card class="card">
+<md-card class="card" ng-class="{task:$ctrl.card.type==='Todo', stock:$ctrl.card.type==='Stock', memo:$ctrl.card.type==='Memo', deleted:$ctrl.card.deleted}">
     <div class="cardToolbar" layout="row" layout-align="space-between start">
         <div>
             <toggle-icon flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()">
@@ -10,11 +10,6 @@
         <div>
             <toggle-icon flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()">
             </toggle-icon>
-            <md-button class="md-icon-button" title="show api url(NOT IMPREMENTED YET)" aria-label=" " disabled>
-                <md-icon class="material-icons">
-                    link
-                </md-icon>
-            </md-button>
             <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)">
                 <md-icon class="material-icons">
                     edit
