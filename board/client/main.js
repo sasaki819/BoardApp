@@ -40,7 +40,7 @@ Meteor.startup(function () {
   Session.set("filter.showDeleted", false);
   Session.set("filter.tags", []);
   Session.set("sort.stared", true);
-  Session.set("sort.by", "updatedAt");
+  Session.set("sort.by", "createdAt");
 });
 
 Tracker.autorun(function () {

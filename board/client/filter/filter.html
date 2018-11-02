@@ -25,7 +25,8 @@
             <md-checkbox ng-model="$ctrl.showCompleteTask" ng-change="$ctrl.onChange()" class="md-primary" ng-disabled="!$ctrl.showTask">
                 CompleteTask
             </md-checkbox>
-            <md-checkbox ng-model="$ctrl.showIncompleteTask" ng-change="$ctrl.onChange()" class="md-primary" ng-disabled="!$ctrl.showTask">
+            <md-checkbox ng-model="$ctrl.showIncompleteTask" ng-change="$ctrl.onChange()" class="md-primary"
+                ng-disabled="!$ctrl.showTask">
                 IncompleteTask
             </md-checkbox>
             <md-checkbox ng-model="$ctrl.showPrivate" ng-change="$ctrl.onChange()" class="md-primary">
@@ -44,11 +45,11 @@
                 Stared on top
             </md-checkbox>
             <md-radio-group ng-model="$ctrl.sortBy" layout="row" ng-change="$ctrl.onChange()" class="md-primary">
-                <md-radio-button value="updatedAt">
-                    updated
-                </md-radio-button>
                 <md-radio-button value="createdAt">
                     created
+                </md-radio-button>
+                <md-radio-button value="updatedAt">
+                    updated
                 </md-radio-button>
                 <md-radio-button value="type">
                     type
