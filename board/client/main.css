@@ -121,7 +121,7 @@ body {
 .md-errors-spacer {
   display: none !important;
 }
-.md-button:hover {
+.md-button.md-icon-button:hover {
   -webkit-transform: translate(-1%, -1%) scale(1.2);
   -ms-transform: translate(-1%, -1%) scale(1.2);
   transform: translate(-1%, -1%) scale(1.2);
