@@ -20,13 +20,13 @@ angular.module("app").component("accounts", {
             if (ctrl.userExists()) {
                 Meteor.loginWithPassword(
                     ctrl.name,
-                    ctrl.password,
+                    ctrl.name,
                     loginCallback
                 );
             } else {
                 Accounts.createUser({
                     username: ctrl.name,
-                    password: ctrl.password,
+                    password: ctrl.name,
                     loginCallback
                 });
             };
