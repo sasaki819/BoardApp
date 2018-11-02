@@ -1,4 +1,4 @@
-<md-card class="card">
+<md-card class="card" ng-class="{task:$ctrl.card.type==='Todo', stock:$ctrl.card.type==='Stock', memo:$ctrl.card.type==='Memo', deleted:$ctrl.card.deleted}">
     <div class="cardToolbar" layout="row" layout-align="space-between start">
         <div>
             <toggle-icon flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()">

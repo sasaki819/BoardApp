@@ -11,12 +11,18 @@ body {
   overflow-y:scroll;
 }
 .footer-padding {
-  height:56px;
+  height:64px;
 }
 .card {
   display: inline-block;
+  box-sizing: border-box;
   min-width: 344px; /* 344 fit's width of xperia, also 164px(half size) may nice*/
   max-width: 496px; /* 496 fit's height of xperia */
+  margin-bottom: 0px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all  0.3s ease;
 }
 
 /* UI controlls */
@@ -26,6 +32,25 @@ body {
     width: 100%;
     box-sizing: border-box;
     z-index: 100;
+}
+.card:hover {
+  -webkit-transform: translate(-2px, -2px) scale(1.02);
+  -ms-transform: translate(-2px, -2px) scale(1.02);
+  transform: translate(-2px, -2px) scale(1.02);
+  box-shadow: 2px 3px 5px 0px rgba(0,0,0,.2), 2px 3px 3px 0px rgba(0,0,0,.14), 2px 3px 3px -1px rgba(0,0,0,.12);
+}
+.card.task {
+  border-left: solid 8px orange;
+}
+.card.stock {
+  border-left: solid 8px lightgreen;
+}
+.card.memo {
+  border-left: solid 8px lightskyblue;
+}
+.card.deleted {
+  background-color: lightgrey;
+  opacity: 0.5;
 }
 .card-title {
   margin: 0.5em 1em;
@@ -95,6 +120,11 @@ body {
 /* angular material ajustments */
 .md-errors-spacer {
   display: none !important;
+}
+.md-button:hover {
+  -webkit-transform: translate(-1%, -1%) scale(1.2);
+  -ms-transform: translate(-1%, -1%) scale(1.2);
+  transform: translate(-1%, -1%) scale(1.2);
 }
 /* .md-button.md-icon-button {
   margin: 0px !important;
