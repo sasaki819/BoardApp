@@ -33,15 +33,6 @@ Meteor.methods({
         check(cardId, String);
         cards.remove(cardId);
     },
-    "cards.setChecked"(cardId, setChecked) {
-        check(cardId, String);
-        check(setChecked, Boolean);
-        cards.update(cardId, {
-            $set: {
-                checked: setChecked
-            }
-        });
-    },
     "cards.update"(cardId, data) {
         check(cardId, String);
         check(data, Object);
@@ -49,6 +40,14 @@ Meteor.methods({
         cards.update(cardId, {
             $set: data
         });
+    },
+    "cards.countup"(cardId) {
+        check(cardId, String);
+        cards.update(cardId, { $inc: { count: 1 } });
+    },
+    "cards.countdown"(cardId) {
+        check(cardId, String);
+        cards.update(cardId, { $inc: { count: -1 } });
     },
     "ping"() {
         const connectionId = this.isSimulation ? Meteor.connection._lastSessionId : this.connection.id;

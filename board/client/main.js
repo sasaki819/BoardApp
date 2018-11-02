@@ -41,6 +41,32 @@ Meteor.startup(function () {
   Session.set("filter.tags", []);
   Session.set("sort.stared", true);
   Session.set("sort.by", "createdAt");
+  // check if query parameter exists
+  if (location.search) {
+    // parse query string to object
+    param = {};
+    location.search.substring(1).split("&").forEach(
+      pair => {
+        let [k, v] = pair.split("=");
+        param[k] = v;
+      }
+    );
+    console.log(param);
+    // update card
+    switch (param.op) {
+      case "set":
+        let data = {};
+        data[param.filed] = eval(param.value);
+        Meteor.call("cards.update", param.id, data);
+        break;
+      case "countup":
+        Meteor.call("cards.countup", param.id);
+        break;
+      case "countdown":
+        Meteor.call("cards.countdown", param.id);
+        break;
+    };
+  }
 });
 
 Tracker.autorun(function () {
