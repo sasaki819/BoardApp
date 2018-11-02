@@ -48,9 +48,11 @@ angular.module("app").component("cardCreate", {
                         type: "Todo",
                         title: $scope.title,
                         checked: false,
+                        stared: false,
+                        private: false,
                         content: $scope.content,         
                         cardTag: [],      
-                        deleted: false
+                        deleted: false,
                     };
                     break;
                 case typeStock:

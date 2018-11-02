@@ -13,7 +13,7 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             .cancel('cancel!');
 
         $mdDialog.show(confirm).then(function () {
-            $scope.onChangeDeletedFlag();
+            $scope.onClickDelete();
         }, function () {
             
         });
@@ -24,10 +24,9 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.onClickCountDown = function () {
         $scope.card.count--;
     };
-    $scope.onChangeDeletedFlag = function () {
-        console.log("onChangeDeletedFlag called.", $scope.card._id);
-        $scope.card.deleted = true;
-        Meteor.call("cards.update", $scope.card._id, $scope.card);
+    $scope.onClickDelete = function () {
+        console.log("onClickDelete called.", $scope.card._id);
+        Meteor.call("cards.update", $scope.card._id, {deleted: true});
         $mdDialog.hide();
     };
 
