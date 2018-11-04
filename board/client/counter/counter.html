@@ -1,12 +1,12 @@
 <div layout="row" layout-align="end center">
-    <md-button class="md-icon-button" ng-click="$ctrl.onCountUp()">
+    <md-button class="md-icon-button" ng-click="$ctrl.onCountUp()" ng-disabled="$ctrl.disabled">
         <md-icon class="material-icons">
             add_circle
         </md-icon>
     </md-button>
     <span ng-bind="$ctrl.count"></span>
     <span ng-bind="$ctrl.unit"></span>
-    <md-button class="md-icon-button" ng-click="$ctrl.onCountDown()">
+    <md-button class="md-icon-button" ng-click="$ctrl.onCountDown()" ng-disabled="$ctrl.disabled">
         <md-icon class="material-icons">
             remove_circle
         </md-icon>

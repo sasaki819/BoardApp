@@ -1,3 +1,3 @@
-<md-button class="md-icon-button" ng-click="$ctrl.onClick()" aria-label=" ">
-    <md-icon class="material-icons" ng-bind="$ctrl.iconName()"></md-icon>
+<md-button class="md-icon-button" ng-click="$ctrl.onClick()" aria-label=" " ng-disabled="$ctrl.disabled">
+    <md-icon class="material-icons" ng-bind="$ctrl.iconName()" ng-class="{on: $ctrl.flag}"></md-icon>
 </md-button>

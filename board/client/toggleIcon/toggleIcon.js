@@ -17,5 +17,6 @@ angular.module("app").component("toggleIcon", {
         on: "@",
         off: "@",
         onToggle: "&",
+        disabled: "=",
     },
 });

@@ -1,22 +1,22 @@
 <md-card class="card" ng-class="{task:$ctrl.card.type==='Todo', stock:$ctrl.card.type==='Stock', memo:$ctrl.card.type==='Memo', deleted:$ctrl.card.deleted}">
     <div class="cardToolbar" layout="row" layout-align="space-between start">
         <div>
-            <toggle-icon flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()">
+            <toggle-icon class="stared-icon" flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()" disabled="$ctrl.card.deleted">
             </toggle-icon>
         </div>
         <div flex="1">
 
         </div>
         <div>
-            <toggle-icon flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()">
+            <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()" disabled="$ctrl.card.deleted">
             </toggle-icon>
-            <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)">
+            <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)" ng-disabled="$ctrl.card.deleted">
                 <md-icon class="material-icons">
                     edit
                 </md-icon>
             </md-button>
             <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted === true" ng-click="$ctrl.showConfirm()" >
-                <md-icon class="material-icons">
+                <md-icon class="material-icons restore-icon">
                     restore_from_trash
                 </md-icon>
             </md-button>
@@ -29,7 +29,7 @@
     </div>
     <div layout="row" layout-align="space-between center">
         <div ng-show="$ctrl.card.checked !== undefined">
-            <toggle-icon flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank" on-toggle="$ctrl.onClickComplete()">
+            <toggle-icon class="checked-icon" flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank" on-toggle="$ctrl.onClickComplete()" disabled="$ctrl.card.deleted">
             </toggle-icon>
         </div>
         <md-truncate class="card-title" flex="100" ng-bind="$ctrl.card.title"></md-truncate>
@@ -38,7 +38,8 @@
             unit="$ctrl.card.unit"
             ng-show="$ctrl.card.count !== undefined"
             on-count-up="$ctrl.onClickCountUp()"
-            on-count-down="$ctrl.onClickCountDown()">
+            on-count-down="$ctrl.onClickCountDown()"
+            disabled="$ctrl.card.deleted">
         </counter>
     </div>
 </md-card>

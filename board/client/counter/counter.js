@@ -7,5 +7,6 @@ angular.module("app").component("counter", {
         unit: "<",
         onCountUp: "&",
         onCountDown: "&",
+        disabled: "=",
     },
 })

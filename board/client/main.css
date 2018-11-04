@@ -42,15 +42,24 @@ body {
 .card.task {
   border-left: solid 8px orange;
 }
+.card.task.deleted {
+  border-left: solid 8px rgba(255,165,0,0.5);
+}
 .card.stock {
   border-left: solid 8px lightgreen;
+}
+.card.stock.deleted {
+  border-left: solid 8px rgba(144,238,144,0.5);
 }
 .card.memo {
   border-left: solid 8px lightskyblue;
 }
+.card.memo.deleted {
+  border-left: solid 8px rgba(135,206,250,0.5);
+}
 .card.deleted {
-  background-color: lightgrey;
-  opacity: 0.5;
+  background-color: rgba(0,0,0,0.1);
+  color:rgba(0,0,0,0.3);
 }
 .card-title {
   margin: 0.5em 1em;
@@ -69,6 +78,22 @@ body {
   color:rgba(0,0,0,0.87);
   background-color:rgba(63,81,181,0.3);
 }
+.stared-icon:not(.on) {
+  text-shadow: black, 0, 0, 0;
+}
+.stared-icon .on {
+  color: orange;
+}
+.private-icon .on {
+  color: orange;
+}
+.checked-icon .on {
+  color: OliveDrab;
+}
+.restore-icon {
+  color: rgba(0,0,0,0.87);
+}
+
 /* user list */
 .online {
     color: green;
@@ -121,7 +146,7 @@ body {
 .md-errors-spacer {
   display: none !important;
 }
-.md-button.md-icon-button:hover {
+.md-button.md-icon-button:hover :not(disabled) {
   -webkit-transform: translate(-1%, -1%) scale(1.2);
   -ms-transform: translate(-1%, -1%) scale(1.2);
   transform: translate(-1%, -1%) scale(1.2);
