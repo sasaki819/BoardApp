@@ -57,6 +57,9 @@ body {
 .card.memo.deleted {
   border-left: solid 8px rgba(135,206,250,0.5);
 }
+.card.fresh {
+  background-color: LemonChiffon;
+}
 .card.deleted {
   background-color: rgba(0,0,0,0.1);
   color:rgba(0,0,0,0.3);

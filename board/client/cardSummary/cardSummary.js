@@ -69,6 +69,9 @@ angular.module("app").component("cardSummary", {
                 });
             }
         };
+        ctrl.isFresh = function () {
+            return (new Date() - ctrl.card.updatedAt) < 3000;
+        };
     },
     bindings: {
         card: "=",
