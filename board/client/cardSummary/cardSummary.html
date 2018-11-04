@@ -8,19 +8,19 @@
 
         </div>
         <div>
-            <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()" disabled="$ctrl.card.deleted">
+            <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()" disabled="$ctrl.card.deleted || !$ctrl.isCreatedByMyself()">
             </toggle-icon>
             <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)" ng-disabled="$ctrl.card.deleted">
                 <md-icon class="material-icons">
                     edit
                 </md-icon>
             </md-button>
-            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted === true" ng-click="$ctrl.showConfirm()" >
+            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted === true" ng-click="$ctrl.showConfirm()" title="restore">
                 <md-icon class="material-icons restore-icon">
                     restore_from_trash
                 </md-icon>
             </md-button>
-            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted !== true" ng-click="$ctrl.showConfirm()" >
+            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted !== true" ng-click="$ctrl.showConfirm()" title="delete">
                 <md-icon class="material-icons">
                     delete
                 </md-icon>

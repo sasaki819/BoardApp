@@ -34,6 +34,9 @@ angular.module("app").component("cardSummary", {
                 clickOutsideToClose: true
             });
         };
+        ctrl.isCreatedByMyself = function () {
+            return ctrl.card.createdBy === (Meteor.user() ? Meteor.user().username : "");
+        };
         ctrl.showConfirm = function (ev) {
             console.log("showConfirm", ctrl.card.deleted);
             // check if card is deleted

@@ -2,20 +2,27 @@
     <md-content class="md-padding">
         <div class="cardToolbar" layout="row" layout-align="space-between start">
             <div>
-                <toggle-icon flag="card.stared" on="star" off="star_border" title="favorite" on-toggle="">
+                <toggle-icon class="stared-icon" flag="card.stared" on="star" off="star_border" title="favorite" on-toggle="">
                 </toggle-icon>
             </div>
             <div flex="1">
             </div>
             <div>
-                <toggle-icon flag="card.private" on="lock" off="lock_open" title="private" on-toggle="">
+                <toggle-icon class="private-icon" flag="card.private" on="lock" off="lock_open" title="private" on-toggle="">
                 </toggle-icon>
-                <md-button class="md-icon-button" ng-if= "card.deleted === true" ng-click="showConfirm()" >
+                <!-- <toggle-icon flag="card.deleted" on="restore_trash" off="delete" title="delete" on-toggle="" ng-click="showConfirm()">
+                </toggle-icon>
+                <md-button flag="card.deleted" class="md-icon-button" title="deleted" aria-label=" " ng-click="showConfirm()" on="restore_trash" off="delete" on-toggle="">
                     <md-icon class="material-icons">
-                        restore_from_trash
+                        delete
+                    </md-icon>
+                </md-button> -->
+                <md-button flag="card.deleted" class="md-icon-button" ng-if= "card.deleted === true" ng-click="showConfirm()" >
+                    <md-icon class="material-icons">
+                        restore_trash
                     </md-icon>
                 </md-button>
-                <md-button class="md-icon-button" ng-if= "card.deleted !== true" ng-click="showConfirm()" >
+                <md-button flag="card.deleted" class="md-icon-button" ng-if= "card.deleted !== true" ng-click="showConfirm()" >
                     <md-icon class="material-icons">
                         delete
                     </md-icon>
@@ -25,7 +32,7 @@
 
         <div layout="row" layout-align="space-between center">
             <div ng-show="card.checked !== undefined">
-                <toggle-icon flag="card.checked" on="check_box" off="check_box_outline_blank" on-toggle="">
+                <toggle-icon class="checked-icon" flag="card.checked" on="check_box" off="check_box_outline_blank" on-toggle="">
                 </toggle-icon>
             </div>
             <md-input-container>
@@ -40,6 +47,7 @@
         </md-chips>
         <accordion caption="'trivial details'">
             created at {{card.createdAt | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}} by {{card.createdBy}}
+
         </accordion>
         <accordion caption="'card detail'">
             <pre>{{card|json}}</pre>

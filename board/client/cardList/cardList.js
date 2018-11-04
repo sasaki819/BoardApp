@@ -11,7 +11,7 @@ angular.module("app").component("cardList", {
                 return cards.find(
                     {
                         $or: [
-                            { private: !true },
+                            { private: { $ne: true } },
                             { createdBy: Meteor.user() ? Meteor.user().username : "" }
                         ]
                     }
