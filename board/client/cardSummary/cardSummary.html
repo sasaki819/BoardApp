@@ -15,9 +15,14 @@
                     edit
                 </md-icon>
             </md-button>
-            <md-button class="md-icon-button" title="delete" aria-label=" " ng-click="$ctrl.onCLickDelete()">
+            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted === true" ng-click="$ctrl.showConfirm()" >
                 <md-icon class="material-icons">
-                    close
+                    restore_from_trash
+                </md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted !== true" ng-click="$ctrl.showConfirm()" >
+                <md-icon class="material-icons">
+                    delete
                 </md-icon>
             </md-button>
         </div>

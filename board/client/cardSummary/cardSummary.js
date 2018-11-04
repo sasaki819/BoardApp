@@ -34,6 +34,39 @@ angular.module("app").component("cardSummary", {
                 clickOutsideToClose: true
             });
         };
+        ctrl.showConfirm = function (ev) {
+            console.log("showConfirm", ctrl.card.deleted);
+            if (ctrl.card.deleted === false) {
+                const confirm = $mdDialog.confirm()
+                    .title('Confirmation')
+                    .textContent('Are you sure you delete this card?')
+                    .targetEvent(ev)
+                    .ok('OK')
+                    .cancel('Cancel');
+                confirm._options.multiple = true;
+                $mdDialog.show(confirm).then(function () {
+                    Meteor.call("cards.update", ctrl.card._id, { deleted: true });
+                    $mdDialog.hide();
+                }, function () {
+                    //「キャンセル」押した場合の処理なし
+                });
+                //deletedがtrueの場合
+            } else {
+                const confirm = $mdDialog.confirm()
+                    .title('Confirmation')
+                    .textContent('Are you sure you undelete this card?')
+                    .targetEvent(ev)
+                    .ok('OK')
+                    .cancel('Cancel');
+                confirm._options.multiple = true;
+                $mdDialog.show(confirm).then(function () {
+                    Meteor.call("cards.update", ctrl.card._id, { deleted: false });
+                    $mdDialog.hide();
+                }, function () {
+                    //「キャンセル」押した場合の処理なし
+                });
+            }
+        };
     },
     bindings: {
         card: "=",
