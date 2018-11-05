@@ -8,11 +8,11 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
         console.log("showConfirm", $scope.card.deleted);
         if ($scope.card.deleted === false) {
             const confirm = $mdDialog.confirm()
-                .title('Confirmation')
-                .textContent('Are you sure you delete this card?')
+                .title('確認')
+                .textContent('カードを削除しますか?')
                 .targetEvent(ev)
-                .ok('OK')
-                .cancel('Cancel');
+                .ok('はい')
+                .cancel('いいえ');
             confirm._options.multiple = true;
             $mdDialog.show(confirm).then(function () {
                 Meteor.call("cards.update", $scope.card._id, { deleted: true });
@@ -22,12 +22,13 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             });
             //deletedがtrueの場合
         } else {
+            //deletedの状態では、cardEditは開けないため、以下は不要な処理
             const confirm = $mdDialog.confirm()
-                .title('Confirmation')
-                .textContent('Are you sure you undelete this card?')
+                .title('確認')
+                .textContent('カードを再利用しますか?')
                 .targetEvent(ev)
-                .ok('OK')
-                .cancel('Cancel');
+                .ok('はい')
+                .cancel('いいえ');
             confirm._options.multiple = true;
             $mdDialog.show(confirm).then(function () {
                 Meteor.call("cards.update", $scope.card._id, { deleted: false });
