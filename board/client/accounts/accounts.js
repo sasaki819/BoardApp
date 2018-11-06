@@ -20,7 +20,7 @@ angular.module("app").component("accounts", {
             if (ctrl.userExists()) {
                 Meteor.loginWithPassword(
                     ctrl.name,
-                    ctrl.name,
+                    ctrl.password,
                     loginCallback
                 );
             } else {
