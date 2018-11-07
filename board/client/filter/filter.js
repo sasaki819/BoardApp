@@ -30,7 +30,6 @@ angular.module("app").component("filter", {
             Session.set("filter.tags", ctrl.tags);
             Session.set("sort.stared", ctrl.sortStared);
             Session.set("sort.by", ctrl.sortBy);
-            console.log("onChange - sort.by", ctrl.sortBy);
         };
     },
 });

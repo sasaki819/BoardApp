@@ -5,13 +5,15 @@ angular.module("app").component("toolbar", {
     controller: function ($mdSidenav, $mdBottomSheet, $mdDialog) {
         const ctrl = this;
         let isFilterPaneShown = false;
-        let isCreateCardPaneShown = false;
+        let isCreateCardDialogShown = false;
         ctrl.onClickUser = function () {
             $mdBottomSheet.hide();
+            $mdDialog.hide();
             $mdSidenav("accounts").toggle();
         };
         ctrl.onClickFilter = function () {
             $mdSidenav("accounts").close();
+            $mdDialog.hide();
             if (isFilterPaneShown) {
                 $mdBottomSheet.hide();
             } else {
@@ -32,17 +34,22 @@ angular.module("app").component("toolbar", {
         ctrl.onClickCreate = function ($event) {
             $mdSidenav("accounts").close();
             $mdBottomSheet.hide();
-            $mdDialog.show({
-                templateUrl: cardEditTemplate,
-                controller: "cardEditController",
-                locals: {
-                    card: {
+            if (!isCreateCardDialogShown) {
+                $mdDialog.show({
+                    templateUrl: cardEditTemplate,
+                    controller: "cardEditController",
+                    locals: {
+                        card: {
+                        },
+                        ok: "作成",
                     },
-                    ok: "作成",
-                },
-                tergetEvent: $event,
-                clickOutsideToClose: true,
-            });
+                    tergetEvent: $event,
+                    clickOutsideToClose: true,
+                }).finally(function () {
+                    isCreateCardDialogShown = false;
+                });;
+                isCreateCardDialogShown = true;
+            }
         };
         ctrl.isLoggedIn = function () {
             return Meteor.user();

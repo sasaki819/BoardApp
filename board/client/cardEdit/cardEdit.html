@@ -13,7 +13,14 @@
                     <toggle-icon class="private-icon" flag="card.private" on="lock" off="lock_open" title="private"
                         on-toggle="">
                     </toggle-icon>
-                    <md-button flag="card.deleted" class="md-icon-button" ng-if="card.deleted === false" ng-click="showConfirm()" title="delete">
+                    <md-button class="md-icon-button" ng-if="card.deleted" ng-click="onClickDeletePermanently()"
+                        title="delete permanently">
+                        <md-icon class="material-icons">
+                            delete_forever
+                        </md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-if="card.deleted === false" ng-click="onClickDelete()"
+                        title="delete">
                         <md-icon class="material-icons">
                             delete
                         </md-icon>
@@ -54,7 +61,7 @@
                     </textarea>
                 </md-input-container>
             </div>
-            <div class="info" ng-show="card.createdBy || card.createdAt" >
+            <div class="info" ng-show="card.createdBy || card.createdAt">
                 {{card.createdBy}} created({{card.createdAt | date: 'yyyy.M.d hh:mm:ss'}})
             </div>
             <div class="info" ng-show="card.updatedBy || card.updatedAt">
@@ -68,8 +75,8 @@
             <md-button class="md-raised" ng-click="close()">
                 キャンセル
             </md-button>
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="card.title === ''"
-                ng-bind="ok" aria-label="ok">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="card.title === ''" ng-bind="ok"
+                aria-label="ok">
             </md-button>
         </md-dialog-actions>
     </form>

@@ -2,6 +2,7 @@ import angular from "angular";
 import angularMeteor from "angular-meteor";
 import "angular-animate";
 import "angular-material";
+import "angular-sanitize";
 import { Accounts } from "meteor/accounts-base";
 import { Session } from "meteor/session";
 
@@ -13,7 +14,8 @@ angular.module("app", [
   angularMeteor,
   "ngMaterial",
   "ngAnimate",
-  "accounts.ui"
+  "accounts.ui",
+  "ngSanitize",
 ]);
 
 require("./test/test.js");
@@ -51,7 +53,6 @@ Meteor.startup(function () {
         param[k] = v;
       }
     );
-    console.log(param);
     // update card
     switch (param.op) {
       case "set":
