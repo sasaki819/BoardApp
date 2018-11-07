@@ -1,15 +1,15 @@
 <md-toolbar layout="row" layout-align="space-between center">
-    <md-button class="md-icon-button" ng-click="$ctrl.showUsersPane()" title="User">
+    <md-button class="md-icon-button" ng-click="$ctrl.onClickUser()" title="User">
         <md-icon class="material-icons">
             person
         </md-icon>
     </md-button>
-    <md-button class="md-icon-button" ng-click="$ctrl.showFilterPane()" title="Filter">
+    <md-button class="md-icon-button" ng-click="$ctrl.onClickFilter()" title="Filter">
         <md-icon class="material-icons">
             search
         </md-icon>
     </md-button>
-    <md-button class="md-icon-button" ng-click="$ctrl.showCreateCardPane()" title="New card" ng-disabled="!$ctrl.isLoggedIn()">
+    <md-button class="md-icon-button" ng-click="$ctrl.onClickCreate($event)" title="New card" ng-disabled="!$ctrl.isLoggedIn()">
         <md-icon class="material-icons">
             add
         </md-icon>

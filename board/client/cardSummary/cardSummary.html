@@ -1,45 +1,38 @@
-<md-card class="card" ng-class="{task:$ctrl.card.type==='Todo', stock:$ctrl.card.type==='Stock', memo:$ctrl.card.type==='Memo', deleted:$ctrl.card.deleted, fresh:$ctrl.isFresh()}">
+<md-card class="card" ng-class="{task:$ctrl.cardType()==='Task', stock:$ctrl.cardType()==='Stock', memo:$ctrl.cardType()==='Memo', deleted:$ctrl.card.deleted, fresh:$ctrl.isFresh()}">
     <div class="cardToolbar" layout="row" layout-align="space-between start">
         <div>
-            <toggle-icon class="stared-icon" flag="$ctrl.card.stared" on="star" off="star_border" title="favorite" on-toggle="$ctrl.onClickFavorite()" disabled="$ctrl.card.deleted">
+            <toggle-icon class="stared-icon" flag="$ctrl.card.stared" on="star" off="star_border" title="favorite"
+                on-toggle="$ctrl.onClickFavorite()" disabled="$ctrl.card.deleted">
             </toggle-icon>
         </div>
         <div flex="1">
 
         </div>
         <div>
-            <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private" on-toggle="$ctrl.onClickPrivate()" disabled="$ctrl.card.deleted || !$ctrl.isCreatedByMyself()">
+            <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private"
+                on-toggle="$ctrl.onClickPrivate()" disabled="$ctrl.card.deleted || !$ctrl.isCreatedByMyself()">
             </toggle-icon>
-            <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)" ng-disabled="$ctrl.card.deleted">
+            <md-button class="md-icon-button" title="edit" aria-label=" " ng-click="$ctrl.onClickEdit($event)" ng-hide="$ctrl.card.deleted">
                 <md-icon class="material-icons">
                     edit
                 </md-icon>
             </md-button>
-            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted === true" ng-click="$ctrl.showConfirm()" title="restore">
-                <md-icon class="material-icons restore-icon">
-                    restore_from_trash
-                </md-icon>
-            </md-button>
-            <md-button class="md-icon-button" ng-if= "$ctrl.card.deleted !== true" ng-click="$ctrl.showConfirm()" title="delete">
+            <md-button class="md-icon-button" title="restore" aria-label=" " ng-click="$ctrl.onClickRestore($event)"
+                ng-show="$ctrl.card.deleted">
                 <md-icon class="material-icons">
-                    delete
+                    restore_from_trash
                 </md-icon>
             </md-button>
         </div>
     </div>
     <div layout="row" layout-align="space-between center">
-        <div ng-show="$ctrl.card.checked !== undefined">
-            <toggle-icon class="checked-icon" flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank" on-toggle="$ctrl.onClickComplete()" disabled="$ctrl.card.deleted">
-            </toggle-icon>
-        </div>
-        <md-truncate class="card-title" flex="100" ng-bind="$ctrl.card.title"></md-truncate>
-        <counter
-            count="$ctrl.card.count"
-            unit="$ctrl.card.unit"
-            ng-show="$ctrl.card.count !== undefined"
-            on-count-up="$ctrl.onClickCountUp()"
-            on-count-down="$ctrl.onClickCountDown()"
-            disabled="$ctrl.card.deleted">
+        <toggle-icon class="checked-icon" flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank"
+            on-toggle="$ctrl.onClickComplete()" ng-show="$ctrl.card.hasCheckbox" disabled="$ctrl.card.deleted">
+        </toggle-icon>
+        <div ng-hide="$ctrl.card.hasCheckbox" style="width:1em;"></div>
+        <md-truncate flex="100" ng-bind="$ctrl.card.title" class="card-title"></md-truncate>
+        <counter count="$ctrl.card.count" unit="$ctrl.card.unit" ng-show="$ctrl.card.hasCounter" on-count-up="$ctrl.onClickCountUp()"
+            on-count-down="$ctrl.onClickCountDown()" disabled="$ctrl.card.deleted">
         </counter>
     </div>
 </md-card>

@@ -29,6 +29,19 @@ angular.module("app").component("cardSummary", {
                 controller: "cardEditController",
                 locals: {
                     card: ctrl.card,
+                    ok: "更新",
+                },
+                tergetEvent: $event,
+                clickOutsideToClose: true
+            });
+        };
+        ctrl.onClickRestore = function($event) {
+            $mdDialog.show({
+                templateUrl: cardEditTemplate,
+                controller: "cardEditController",
+                locals: {
+                    card: ctrl.card,
+                    ok: "復元",
                 },
                 tergetEvent: $event,
                 clickOutsideToClose: true
@@ -37,40 +50,18 @@ angular.module("app").component("cardSummary", {
         ctrl.isCreatedByMyself = function () {
             return ctrl.card.createdBy === (Meteor.user() ? Meteor.user().username : "");
         };
-        ctrl.showConfirm = function (ev) {
-            console.log("showConfirm", ctrl.card.deleted);
-            // check if card is deleted
-            if (ctrl.card.deleted === false) {
-                // when card is not deleted
-                const confirm = $mdDialog.confirm()
-                    .title('Confirmation')
-                    .textContent('Are you sure you delete this card?')
-                    .targetEvent(ev)
-                    .ok('OK')
-                    .cancel('Cancel');
-                confirm._options.multiple = true;
-                $mdDialog.show(confirm).then(function () {
-                    Meteor.call("cards.update", ctrl.card._id, { deleted: true });
-                    $mdDialog.hide();
-                }, function () {
-                    //「キャンセル」押した場合の処理なし
-                });
-            } else {
-                const localCard = angular.copy(ctrl.card);
-                localCard.deleted = false;
-                $mdDialog.show({
-                    templateUrl: cardEditTemplate,
-                    controller: "cardEditController",
-                    locals: {
-                        card: localCard,
-                    },
-                    tergetEvent: ev,
-                    clickOutsideToClose: true
-                });
-            }
-        };
         ctrl.isFresh = function () {
             return (new Date() - ctrl.card.updatedAt) < 3000;
+        };
+        ctrl.cardType = function () {
+            if (ctrl.card.hasCheckbox) {
+                ctrl.card.type="Task"
+            } else if (ctrl.card.hasCounter){
+                ctrl.card.type="Stock"
+            } else {
+                ctrl.card.type="Memo"
+            }
+            return ctrl.card.type;
         };
     },
     bindings: {

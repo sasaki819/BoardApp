@@ -33,6 +33,14 @@ body {
     box-sizing: border-box;
     z-index: 100;
 }
+card-list {
+  display: block;
+  box-sizing: border-box;
+}
+card-summary {
+  display: inline-block;
+  box-sizing: border-box;
+}
 .card:hover {
   -webkit-transform: translate(-2px, -2px) scale(1.02);
   -ms-transform: translate(-2px, -2px) scale(1.02);
@@ -65,7 +73,7 @@ body {
   color:rgba(0,0,0,0.3);
 }
 .card-title {
-  margin: 0.5em 1em;
+  padding: 8px 0px;
 }
 .filter-option-group {
   display:inline-block;
@@ -165,6 +173,12 @@ md-toolbar._md-toolbar-transitions {
 }
 md-radio-group {
   margin-bottom: 16px;
+}
+md-input-container {
+  margin-bottom: 0px !important;
+}
+md-dialog-content {
+  min-width:40vw;
 }
 /* experiment */
 .slim-input {

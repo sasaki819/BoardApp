@@ -1,6 +1,6 @@
 <md-dialog aria-label="card detail" layout="column">
-    <md-content class="md-padding">
-        <form ng-submit="updateCard()">
+    <form ng-submit="onSubmit()">
+        <md-dialog-content class="md-dialog-content">
             <div class="cardToolbar" layout="row" layout-align="space-between start">
                 <div>
                     <toggle-icon class="stared-icon" flag="card.stared" on="star" off="star_border" title="favorite"
@@ -13,12 +13,7 @@
                     <toggle-icon class="private-icon" flag="card.private" on="lock" off="lock_open" title="private"
                         on-toggle="">
                     </toggle-icon>
-                    <md-button flag="card.deleted" class="md-icon-button" ng-if="card.deleted === true" ng-click="showConfirm()">
-                        <md-icon class="material-icons">
-                            restore_trash
-                        </md-icon>
-                    </md-button>
-                    <md-button flag="card.deleted" class="md-icon-button" ng-if="card.deleted !== true" ng-click="showConfirm()">
+                    <md-button flag="card.deleted" class="md-icon-button" ng-if="card.deleted === false" ng-click="showConfirm()" title="delete">
                         <md-icon class="material-icons">
                             delete
                         </md-icon>
@@ -26,37 +21,56 @@
                 </div>
             </div>
 
-            <div layout="row" layout-align="space-between center">
-                <div ng-show="card.checked !== undefined">
-                    <toggle-icon class="checked-icon" flag="card.checked" on="check_box" off="check_box_outline_blank"
-                        on-toggle="">
-                    </toggle-icon>
-                </div>
+            <div layout="column">
                 <md-input-container>
-                    <input type="text" ng-model="card.title" style="width: 100%">
+                    <input type="text" name="title" ng-model="card.title" placeholder="Title" required md-autofocus>
                 </md-input-container>
-                <counter count="card.count" unit="card.unit" ng-show="card.count !== undefined" on-count-up="onClickCountUp()"
-                    on-count-down="onClickCountDown()">
-                </counter>
+                <md-input-container>
+                    <input type="text" name="url" ng-model="card.url" placeholder="URL">
+                </md-input-container>
+                <md-chips ng-model="card.tags" placeholder="add tags ..." md-add-on-blur md-on-add="onAddTag($chip, $index)"
+                    md-enable-chip-edit="true" md-on-remove="onRemoveTag($chip, $index, $event)" ng-change="onChangeTags()">
+                </md-chips>
+                <br>
+                <div layout="row" layout-align="start">
+                    <md-checkbox ng-model="card.hasCheckbox" class="md-raised md-primary">Checkbox</md-checkbox>
+                    <md-checkbox ng-model="card.checked" class="checked-icon" ng-show="card.hasCheckbox">Complete</md-checkbox>
+                </div>
+                <md-checkbox ng-model="card.hasCounter" class="md-raised md-primary">Counter</md-checkbox>
+                <div ng-show="card.hasCounter">
+                    <md-input-container flex="30">
+                        <input type="number" name="count" ng-model="card.count" min="0" step="{{step}}" placeholder="Count">
+                    </md-input-container>
+                    <md-input-container flex="30">
+                        <input type="number" name="step" ng-model="card.step" min="0.1" step="0.1" placeholder="Step">
+                    </md-input-container>
+                    <md-input-container flex="30">
+                        <input ng-model="card.unit" name="unit" placeholder="Unit">
+                    </md-input-container>
+                </div>
+                <md-checkbox ng-model="card.hasDescription" class="md-raised md-primary">Description</md-checkbox>
+                <md-input-container class="md-block" rows="" max-rows="5" ng-show="card.hasDescription">
+                    <textarea ng-model="card.description" name="description" aria-label="card.description">
+                    </textarea>
+                </md-input-container>
             </div>
-            <md-chips ng-model="card.tags" placeholder="add tags ..." md-add-on-blur md-on-add="onAddTag($chip, $index)"
-                md-enable-chip-edit="true" md-on-remove="onRemoveTag($chip, $index, $event)" ng-change="onChangeTags()">
-            </md-chips>
-            <accordion caption="'trivial details'">
-                created at {{card.createdAt | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}} by {{card.createdBy}}
-
-            </accordion>
+            <div class="info" ng-show="card.createdBy || card.createdAt" >
+                {{card.createdBy}} created({{card.createdAt | date: 'yyyy.M.d hh:mm:ss'}})
+            </div>
+            <div class="info" ng-show="card.updatedBy || card.updatedAt">
+                {{card.updatedBy}} updated({{lasttime(card.updatedAt)}})
+            </div>
             <accordion caption="'card detail'">
                 <pre>{{card|json}}</pre>
             </accordion>
-            <div layout="row" layout-align="space-between center">
-                <md-button class="md-raised" ng-click="close()">
-                    キャンセル
-                </md-button>
-                <md-button class="md-raised md-primary" ng-click="updateCard()" type="submit" ng-disabled="card.title === ''">
-                    更新
-                </md-button>
-            </div>
-        </form>
-    </md-content>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button class="md-raised" ng-click="close()">
+                キャンセル
+            </md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="card.title === ''"
+                ng-bind="ok" aria-label="ok">
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>

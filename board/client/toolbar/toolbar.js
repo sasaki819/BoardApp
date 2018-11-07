@@ -1,15 +1,16 @@
 import toolbarTemplate from "./toolbar.html";
+import cardEditTemplate from "../cardEdit/cardEdit.html";
 angular.module("app").component("toolbar", {
     templateUrl: toolbarTemplate,
-    controller: function ($mdSidenav, $mdBottomSheet) {
+    controller: function ($mdSidenav, $mdBottomSheet, $mdDialog) {
         const ctrl = this;
         let isFilterPaneShown = false;
         let isCreateCardPaneShown = false;
-        ctrl.showUsersPane = function () {
+        ctrl.onClickUser = function () {
             $mdBottomSheet.hide();
             $mdSidenav("accounts").toggle();
         };
-        ctrl.showFilterPane = function () {
+        ctrl.onClickFilter = function () {
             $mdSidenav("accounts").close();
             if (isFilterPaneShown) {
                 $mdBottomSheet.hide();
@@ -17,7 +18,8 @@ angular.module("app").component("toolbar", {
                 $mdBottomSheet.show({
                     template: "<filter></filter>",
                     disableBackdrop: true,
-                    isLockedOpen: true,
+                    escapeToClose: true,
+                    clickOutsideToClose: true,
                     disableParentScroll: false,
                 }).then(function () {
                     isFilterPaneShown = false;
@@ -27,20 +29,20 @@ angular.module("app").component("toolbar", {
                 isFilterPaneShown = true;
             }
         };
-        ctrl.showCreateCardPane = function () {
+        ctrl.onClickCreate = function ($event) {
             $mdSidenav("accounts").close();
-            if (isCreateCardPaneShown) {
-                $mdBottomSheet.hide();
-            } else {
-                $mdBottomSheet.show({
-                    template: "<card-create></card-create>",
-                }).then(function () {
-                    isCreateCardPaneShown = false;
-                }).catch(function () {
-                    isCreateCardPaneShown = false;
-                });
-                isCreateCardPaneShown = true;
-            }
+            $mdBottomSheet.hide();
+            $mdDialog.show({
+                templateUrl: cardEditTemplate,
+                controller: "cardEditController",
+                locals: {
+                    card: {
+                    },
+                    ok: "作成",
+                },
+                tergetEvent: $event,
+                clickOutsideToClose: true,
+            });
         };
         ctrl.isLoggedIn = function () {
             return Meteor.user();

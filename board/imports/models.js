@@ -24,9 +24,29 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
-        newCard.createdAt = new Date();
-        newCard.updatedAt = new Date();
+        newCard.stared = (newCard.stared || false);
+        newCard.private = (newCard.private || false);
+        newCard.deleted = (newCard.deleted || false);
+        newCard.hasCheckbox = (newCard.hasCheckbox || false);
+        newCard.hasCounter = (newCard.hasCounter || false);
+        newCard.hasDescription = (newCard.hasDescription || false);
+        newCard.checked = (newCard.checked || false);
+        newCard.count = (newCard.count || 0);
+        newCard.step = (newCard.step || 1);
+        newCard.unit = (newCard.unit || "");
+        newCard.description = (newCard.description || "");
+        newCard.tags = (newCard.tags || []);
         newCard.createdBy = Meteor.user().username;
+        newCard.createdAt = new Date();
+        newCard.updatedBy = Meteor.user().username;
+        newCard.updatedAt = new Date();
+        if (newCard.hasCheckbox) {
+            newCard.type="Task"
+        } else if (newCard.hasCounter){
+            newCard.type="Stock"
+        } else {
+            newCard.type="Memo"
+        }
         cards.insert(newCard);
     },
     "cards.remove"(cardId) {
@@ -36,7 +56,6 @@ Meteor.methods({
     "cards.update"(cardId, data) {
         check(cardId, String);
         check(data, Object);
-        data.updatedAt = new Date();
         cards.update(cardId, {
             $set: data
         });
