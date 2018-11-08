@@ -72,6 +72,9 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.onClickCountDown = function () {
         $scope.card.count--;
     };
+    $scope.onClickLink = function ($mdMenu, ev) {
+        $mdMenu.open(ev)
+    };
     $scope.lasttime = function (updatedAt) {
         return updatedAt;
     };
@@ -85,6 +88,32 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             Meteor.call("cards.add", $scope.card);
         }
         $mdDialog.hide();
+    };
+    $scope.onClickCopyURL = function (op, field, value) {
+        let url = location.origin + location.pathname + "?id=" + $scope.card._id;
+        if (op) {
+            url = url + "&op=" + op;
+        }
+        if (field) {
+            url = url + "&field=" + field;
+        }
+        if (value) {
+            url = url + "&value=" + value;
+        }
+        const targetElement = document.getElementById("hidden-text");
+        if (!targetElement) {
+            return;
+        }
+        targetElement.innerText = url;
+        const selection = document.getSelection();
+        if (!selection) {
+            return;
+        }
+        selection.selectAllChildren(targetElement);
+        const success = document.execCommand("copy");
+        if(!success) {
+            return;
+        }
     };
     $scope.close = $mdDialog.cancel;
 });

@@ -41,11 +41,11 @@ Meteor.methods({
         newCard.updatedBy = Meteor.user().username;
         newCard.updatedAt = new Date();
         if (newCard.hasCheckbox) {
-            newCard.type="Task"
-        } else if (newCard.hasCounter){
-            newCard.type="Stock"
+            newCard.type = "Task"
+        } else if (newCard.hasCounter) {
+            newCard.type = "Stock"
         } else {
-            newCard.type="Memo"
+            newCard.type = "Memo"
         }
         cards.insert(newCard);
     },
@@ -56,17 +56,37 @@ Meteor.methods({
     "cards.update"(cardId, data) {
         check(cardId, String);
         check(data, Object);
+        data.updatedBy = Meteor.user() && Meteor.user().username || "Guest";
+        data.updatedAt = new Date();
+        console.log("cards.update", cardId, data);
         cards.update(cardId, {
             $set: data
         });
     },
     "cards.countup"(cardId) {
         check(cardId, String);
-        cards.update(cardId, { $inc: { count: 1 } });
+        console.log("cards.countup", cardId);
+        cards.update(cardId, {
+            $inc: {
+                count: 1
+            },
+            $set: {
+                updatedBy:Meteor.user() && Meteor.user().username || "Guest",
+                updatedAt: new Date(),
+            }
+        });
     },
     "cards.countdown"(cardId) {
         check(cardId, String);
-        cards.update(cardId, { $inc: { count: -1 } });
+        console.log("cards.countdown", cardId);
+        cards.update(cardId, {
+            $inc: {
+                count: -1
+            },
+            $set: {
+                updatedBy:Meteor.user() && Meteor.user().username || "Guest",
+                updatedAt: new Date(),
+            }});
     },
     "ping"() {
         const connectionId = this.isSimulation ? Meteor.connection._lastSessionId : this.connection.id;

@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
   min-width: 344px; /* 344 fit's width of xperia, also 164px(half size) may nice*/
   max-width: 496px; /* 496 fit's height of xperia */
-  margin-bottom: 0px;
+  margin: 8px 0px 0px 8px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -36,6 +36,7 @@ body {
 card-list {
   display: block;
   box-sizing: border-box;
+  padding-right: 8px;
 }
 card-summary {
   display: inline-block;
@@ -103,6 +104,11 @@ card-summary {
 }
 .restore-icon {
   color: rgba(0,0,0,0.87);
+}
+.hidden-text {
+  height:1px;
+  width:1px;
+  overflow: hidden;
 }
 
 /* user list */

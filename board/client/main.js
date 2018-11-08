@@ -53,11 +53,13 @@ Meteor.startup(function () {
         param[k] = v;
       }
     );
+    console.log(param);
     // update card
     switch (param.op) {
       case "set":
         let data = {};
-        data[param.filed] = eval(param.value);
+        data[param.field] = eval(param.value);
+        data.deleted = false;
         Meteor.call("cards.update", param.id, data);
         break;
       case "countup":
