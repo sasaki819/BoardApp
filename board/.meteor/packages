@@ -20,3 +20,4 @@ angular-templates
 accounts-password@1.5.1
 dotansimha:accounts-ui-angular
 npm-bcrypt@0.9.3
+momentjs:moment
