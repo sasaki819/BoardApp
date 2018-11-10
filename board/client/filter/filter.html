@@ -37,8 +37,9 @@
             </md-checkbox>
         </accordion>
         <accordion caption="'Tags'">
-            <md-chips ng-model="$ctrl.tags" placeholder="tags" md-add-on-blur md-enable-chip-edit="true" ng-change="$ctrl.onChange()">
-            </md-chips>
+            <md-checkbox ng-repeat="tag in tags" ng-checked="$ctrl.isSelected(tag)" ng-click="$ctrl.onClickTag(tag)">
+                {{tag}}
+            </md-checkbox>
         </accordion>
         <accordion caption="'Sort'">
             <md-checkbox ng-model="$ctrl.sortStared" ng-change="$ctrl.onChange()" class="md-primary">

@@ -1,10 +1,42 @@
-import filterTemplate from "./filter.html";
+import { _ } from 'underscore';
+import { cards } from '../../imports/models.js';
 import { Session } from 'meteor/session';
+import filterTemplate from "./filter.html";
 
 angular.module("app").component("filter", {
     templateUrl: filterTemplate,
     controller: function ($scope) {
         const ctrl = this;
+        $scope.subscribe("cards");
+        $scope.helpers({
+            tags() {
+                const added = {};
+                const tags = [];
+                cards.find(
+                    {
+                        tags: {
+                            $exists: true,
+                            $not: { $size: 0 }
+                        }
+                    }, {
+                        fields: {
+                            tags: 1
+                        }
+                    }
+                ).map(card => {
+                    // this function get performance at the expense of beauty
+                    const length = card.tags.length;
+                    for (let i = 0; i < length; i ++) {
+                        const tag = card.tags[i];
+                        if (added[tag] !== 1) {
+                            added[tag] = 1;
+                            tags[tags.length] = tag;
+                        }
+                    }
+                });
+                return tags;
+            },
+        });
         ctrl.$onInit = () => {
             ctrl.keyword = Session.get("filter.keyword");
             ctrl.showTask = Session.get("filter.showTask");
@@ -14,7 +46,7 @@ angular.module("app").component("filter", {
             ctrl.showIncompleteTask = Session.get("filter.showIncompleteTask");
             ctrl.showPrivate = Session.get("filter.showPrivate");
             ctrl.showDeleted = Session.get("filter.showDeleted");
-            ctrl.tags = Session.get("filter.tags");
+            ctrl.selectedTags = Session.get("filter.tags");
             ctrl.sortStared = Session.get("sort.stared");
             ctrl.sortBy = Session.get("sort.by");
         };
@@ -27,9 +59,21 @@ angular.module("app").component("filter", {
             Session.set("filter.showIncompleteTask", ctrl.showIncompleteTask);
             Session.set("filter.showPrivate", ctrl.showPrivate);
             Session.set("filter.showDeleted", ctrl.showDeleted);
-            Session.set("filter.tags", ctrl.tags);
+            Session.set("filter.tags", ctrl.selectedTags);
             Session.set("sort.stared", ctrl.sortStared);
             Session.set("sort.by", ctrl.sortBy);
+        };
+        ctrl.onClickTag = function(tag, value) {
+            const index= ctrl.selectedTags.indexOf(tag);
+            if (index > -1) {
+                ctrl.selectedTags.splice(index, 1);
+            }else{
+                ctrl.selectedTags.push(tag);
+            }
+            ctrl.onChange();
+        };
+        ctrl.isSelected = function(tag) {
+            return ctrl.selectedTags.indexOf(tag) > -1
         };
     },
 });
