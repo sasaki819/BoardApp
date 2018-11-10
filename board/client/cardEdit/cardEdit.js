@@ -7,7 +7,9 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.card.title = (card.title || "");
     $scope.card.stared = (card.stared || false);
     $scope.card.private = (card.private || false);
-    $scope.card.deleted = (card.deleted || false);
+    if (card._id) {
+        $scope.card.deleted = (card.deleted || false);
+    }
     $scope.card.hasCheckbox = (card.hasCheckbox || false);
     $scope.card.hasCounter = (card.hasCounter || false);
     $scope.card.hasDescription = (card.hasDescription || false);
