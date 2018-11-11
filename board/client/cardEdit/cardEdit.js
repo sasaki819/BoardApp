@@ -131,13 +131,8 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
             return moment($scope.card.createdTime).format("YYYY.MM.DD");
         }
     };
-<<<<<<< HEAD
-    $scope.passedTime = function (card) {
-        const passedTime = new Date() - $scope.card.updatedAt;
-=======
     $scope.passedTime = function (time) {
         const passedTime = new Date() - time;
->>>>>>> chino
         if (passedTime < (1000 * 10)) {
             return "ちょうど今";
         } else if (passedTime < (1000 * 60)) {
@@ -145,15 +140,9 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
         } else if (passedTime < (1000 * 60 * 5)) {
             return "ついさっき";
         } else if (passedTime < (1000 * 60 * 60 * 24 * 5)) {
-<<<<<<< HEAD
-            return moment($scope.card.updatedAt, "YYYYMMDD").fromNow();
-        } else {
-            return moment($scope.card.updatedAt).format("YYYY.MM.DD");
-=======
             return moment(time, "YYYYMMDD").fromNow();
         } else {
             return moment(time).format("YYYY.MM.DD");
->>>>>>> chino
         }
     };
 });
