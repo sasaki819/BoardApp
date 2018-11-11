@@ -1,3 +1,4 @@
+import moment from 'moment';
 angular.module("app").controller("cardEditController", function ($scope, $mdDialog, card, ok) {
     $scope.ok = ok;
     $scope.card = {};
@@ -17,8 +18,8 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.card.unit = (card.unit || "");
     $scope.card.description = (card.description || "");
     $scope.card.tags = (card.tags || []);
-    if (card.createBy) {
-        $scope.card.createBy = card.createdBy;
+    if (card.createdBy) {
+        $scope.card.createdBy = card.createdBy;
     }
     if (card.createdAt) {
         $scope.card.createdAt = card.createdAt;
@@ -111,9 +112,37 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
         }
         selection.selectAllChildren(targetElement);
         const success = document.execCommand("copy");
-        if(!success) {
+        if (!success) {
             return;
         }
     };
     $scope.close = $mdDialog.cancel;
+    $scope.createdTime = function (card) {
+        const createdTime = new Date() - $scope.card.createdAt;
+        if (createdTime < (1000 * 10)) {
+            return "ちょうど今";
+        } else if (createdTime < (1000 * 60)) {
+            return "ちょいと前";
+        } else if (createdTime < (1000 * 60 * 5)) {
+            return "ついさっき";
+        } else if (createdTime < (1000 * 60 * 60 * 24 * 5)) {
+            return moment($scope.card.createdTime, "YYYYMMDD").fromNow();
+        } else {
+            return moment($scope.card.createdTime).format("YYYY.MM.DD");
+        }
+    };
+    $scope.passedTime = function (time) {
+        const passedTime = new Date() - time;
+        if (passedTime < (1000 * 10)) {
+            return "ちょうど今";
+        } else if (passedTime < (1000 * 60)) {
+            return "ちょいと前";
+        } else if (passedTime < (1000 * 60 * 5)) {
+            return "ついさっき";
+        } else if (passedTime < (1000 * 60 * 60 * 24 * 5)) {
+            return moment(time, "YYYYMMDD").fromNow();
+        } else {
+            return moment(time).format("YYYY.MM.DD");
+        }
+    };
 });
