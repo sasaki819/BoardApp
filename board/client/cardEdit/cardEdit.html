@@ -113,11 +113,10 @@
                     </textarea>
                 </md-input-container>
             </div>
-            <div class="info" ng-show="card.createdBy || card.createdAt">
-                {{card.createdBy}} created({{card.createdAt | date: 'yyyy.M.d hh:mm:ss'}})
-            </div>
-            <div class="info" ng-show="card.updatedBy || card.updatedAt">
-                {{card.updatedBy}} updated({{lasttime(card.updatedAt)}})
+            <div ng-if="card._id">
+                作成　　：　{{passedTime(card.createdAt)}} ({{card.createdBy}})
+                <br>
+                最終更新：　{{passedTime(card.updatedAt)}} ({{card.updatedBy}})
             </div>
             <accordion caption="'card detail'">
                 <pre>{{card|json}}</pre>
