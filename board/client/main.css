@@ -24,6 +24,11 @@ body {
   -o-transition: all 0.3s ease;
   transition: all  0.3s ease;
 }
+.layout-right-upper {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
 
 /* UI controlls */
 .footer {
@@ -102,9 +107,9 @@ card-summary {
 .checked-icon .on {
   color: OliveDrab;
 }
-.restore-icon {
+/* .restore-icon {
   color: rgba(0,0,0,0.87);
-}
+} */
 .hidden-text {
   height:1px;
   width:1px;
@@ -129,16 +134,16 @@ card-summary {
 
 /* ng-animate */
 .ng-enter{
-  -webkit-transition: opacity 0.3s ease-in;
-  transition: opacity 0.3s ease-in;
+  -webkit-transition: opacity 0.6s ease-in;
+  transition: opacity 0.6s ease-in;
 }
 .ng-leave{
-  -webkit-transition: opacity 0.3s ease-out;
-  transition: opacity 0.3s ease-out;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
 }
 .ng-move {
-  -webkit-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease;
 }
 .ng-enter {
   opacity: 0;
@@ -163,10 +168,13 @@ card-summary {
 .md-errors-spacer {
   display: none !important;
 }
-.md-button.md-icon-button:hover :not(disabled) {
+/* .md-button.md-icon-button:hover :not(disabled) {
   -webkit-transform: translate(-1%, -1%) scale(1.2);
   -ms-transform: translate(-1%, -1%) scale(1.2);
   transform: translate(-1%, -1%) scale(1.2);
+} */
+.md-button.md-icon-button:hover :not(disabled) {
+  text-shadow: rgba(120,120,120,0.8) 2px 2px 24px;
 }
 /* .md-button.md-icon-button {
   margin: 0px !important;

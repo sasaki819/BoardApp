@@ -19,8 +19,8 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
     $scope.card.unit = (card.unit || "");
     $scope.card.description = (card.description || "");
     $scope.card.tags = (card.tags || []);
-    if (card.createBy) {
-        $scope.card.createBy = card.createdBy;
+    if (card.createdBy) {
+        $scope.card.createdBy = card.createdBy;
     }
     if (card.createdAt) {
         $scope.card.createdAt = card.createdAt;

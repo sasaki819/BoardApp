@@ -30,7 +30,10 @@ angular.module("app").component("accounts", {
                     loginCallback
                 });
             };
-            function loginCallback() {
+            function loginCallback(err) {
+                if (err) {
+                    console.log("login faild", err);
+                }
                 Meteor.call("ping");
             };
         };
