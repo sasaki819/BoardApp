@@ -113,13 +113,8 @@
                     </textarea>
                 </md-input-container>
             </div>
-<<<<<<< HEAD
-            <div ng-if="card.deleted === undefined">
-                作成　　：　{{createdTime(card.createdAt)}} ({{card.createdBy}})
-=======
             <div ng-if="card._id">
                 作成　　：　{{passedTime(card.createdAt)}} ({{card.createdBy}})
->>>>>>> chino
                 <br>
                 最終更新：　{{passedTime(card.updatedAt)}} ({{card.updatedBy}})
             </div>
