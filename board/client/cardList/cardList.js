@@ -56,7 +56,7 @@ angular.module("app").component("cardList", {
             if (!(keywordRE.test(card.title) || keywordRE.test(card.content))) {
                 return false;
             }
-            if (!$scope.filterShowTask && card.type === "Todo") {
+            if (!$scope.filterShowTask && card.type === "Task") {
                 return false;
             }
             if (!$scope.filterShowStock && card.type === "Stock") {
