@@ -63,6 +63,20 @@ angular.module("app").component("filter", {
             Session.set("sort.stared", ctrl.sortStared);
             Session.set("sort.by", ctrl.sortBy);
         };
+        ctrl.onReset = function () {
+            Session.set("filter.keyword", "");
+            Session.set("filter.showTask", true);
+            Session.set("filter.showStock", true);
+            Session.set("filter.showMemo", true);
+            Session.set("filter.showCompleteTask", true);
+            Session.set("filter.showIncompleteTask", true);
+            Session.set("filter.showPrivate", true);
+            Session.set("filter.showDeleted", false);
+            Session.set("filter.tags", []);
+            Session.set("sort.stared", true);
+            Session.set("sort.by", "createdAt");
+            ctrl.$onInit();
+        };
         ctrl.onClickTag = function(tag, value) {
             const index= ctrl.selectedTags.indexOf(tag);
             if (index > -1) {
