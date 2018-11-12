@@ -20,7 +20,7 @@ body {
   min-width: 158px; /* 344 fit's width of xperia, also 164px(half size) may nice*/
   max-width: 496px; /* 496 fit's height of xperia */
   /* min-height: 92px; */
-  margin: 8px 0px 0px 8px;
+  /* margin: 8px 0px 0px 8px; */
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;

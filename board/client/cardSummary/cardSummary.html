@@ -38,9 +38,10 @@
             </a>
         </div>
         <div>
-            <counter count="$ctrl.card.count" unit="$ctrl.card.unit" ng-show="$ctrl.card.hasCounter" on-count-up="$ctrl.onClickCountUp()"
+            <counter count="$ctrl.card.count" unit="$ctrl.card.unit" ng-if="$ctrl.card.hasCounter" on-count-up="$ctrl.onClickCountUp()"
                 on-count-down="$ctrl.onClickCountDown()" disabled="$ctrl.card.deleted">
             </counter>
+            <div ng-if="!$ctrl.card.hasCounter" style="width:14px; height:40px;"></div>
         </div>
     </div>
 </md-card>
