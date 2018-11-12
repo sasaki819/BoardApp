@@ -6,7 +6,6 @@
             </toggle-icon>
         </div>
         <div flex="1">
-
         </div>
         <div>
             <toggle-icon class="private-icon" flag="$ctrl.card.private" on="lock" off="lock_open" title="private"
@@ -26,13 +25,22 @@
         </div>
     </div>
     <div layout="row" layout-align="space-between center">
-        <toggle-icon class="checked-icon" flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank"
-            on-toggle="$ctrl.onClickComplete()" ng-show="$ctrl.card.hasCheckbox" disabled="$ctrl.card.deleted">
-        </toggle-icon>
-        <div ng-hide="$ctrl.card.hasCheckbox" style="width:1em;"></div>
-        <md-truncate flex="100" ng-bind="$ctrl.card.title" class="card-title"></md-truncate>
-        <counter count="$ctrl.card.count" unit="$ctrl.card.unit" ng-show="$ctrl.card.hasCounter" on-count-up="$ctrl.onClickCountUp()"
-            on-count-down="$ctrl.onClickCountDown()" disabled="$ctrl.card.deleted">
-        </counter>
+        <div>
+            <toggle-icon class="checked-icon" flag="$ctrl.card.checked" on="check_box" off="check_box_outline_blank"
+                on-toggle="$ctrl.onClickComplete()" ng-show="$ctrl.card.hasCheckbox" disabled="$ctrl.card.deleted">
+            </toggle-icon>
+            <div ng-if="!$ctrl.card.hasCheckbox" style="width:14px; height:40px;"></div>
+        </div>
+        <div flex="100">
+            <md-truncate ng-if="!$ctrl.card.url" ng-bind="$ctrl.card.title" class="card-title"></md-truncate>
+            <a ng-if="$ctrl.card.url" ng-href="{{$ctrl.card.url}}" target="_blank">
+                <md-truncate flex="100" ng-bind="$ctrl.card.title" class="card-title"></md-truncate>
+            </a>
+        </div>
+        <div>
+            <counter count="$ctrl.card.count" unit="$ctrl.card.unit" ng-show="$ctrl.card.hasCounter" on-count-up="$ctrl.onClickCountUp()"
+                on-count-down="$ctrl.onClickCountDown()" disabled="$ctrl.card.deleted">
+            </counter>
+        </div>
     </div>
 </md-card>

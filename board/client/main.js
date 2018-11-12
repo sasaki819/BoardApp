@@ -22,7 +22,6 @@ require("./test/test.js");
 require("./toolbar/toolbar.js");
 require("./accounts/accounts.js");
 require("./filter/filter.js");
-require("./cardCreate/cardCreate.js");
 require("./cardList/cardList.js");
 require("./cardSummary/cardSummary.js");
 require("./cardEdit/cardEdit.js");
@@ -53,7 +52,7 @@ Meteor.startup(function () {
         param[k] = v;
       }
     );
-    console.log(param);
+    // console.log(param);
     // update card
     switch (param.op) {
       case "set":

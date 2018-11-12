@@ -11,7 +11,7 @@ if (Meteor.isServer) {
         return cards.find();
     });
     Meteor.publish("users", function usersPublication() {
-        return Meteor.users.find();
+        return Meteor.users.find({},{$fields: {username: 1}});
     });
     Meteor.publish("connections", function connectionsPublication() {
         return connections.find({}, { sort: { timestamp: 1 } });
@@ -24,6 +24,8 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
+        newCard.title = (newCard.title || "");
+        newCard.url = (newCard.url || "");
         newCard.stared = (newCard.stared || false);
         newCard.private = (newCard.private || false);
         newCard.deleted = (newCard.deleted || false);
@@ -58,14 +60,14 @@ Meteor.methods({
         check(data, Object);
         data.updatedBy = Meteor.user() && Meteor.user().username || "Guest";
         data.updatedAt = new Date();
-        console.log("cards.update", cardId, data);
+        // console.log("cards.update", cardId, data);
         cards.update(cardId, {
             $set: data
         });
     },
     "cards.countup"(cardId) {
         check(cardId, String);
-        console.log("cards.countup", cardId);
+        // console.log("cards.countup", cardId);
         cards.update(cardId, {
             $inc: {
                 count: 1
@@ -78,7 +80,7 @@ Meteor.methods({
     },
     "cards.countdown"(cardId) {
         check(cardId, String);
-        console.log("cards.countdown", cardId);
+        // console.log("cards.countdown", cardId);
         cards.update(cardId, {
             $inc: {
                 count: -1

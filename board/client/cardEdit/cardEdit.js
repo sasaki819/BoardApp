@@ -6,6 +6,7 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
         $scope.card._id = card._id;
     }
     $scope.card.title = (card.title || "");
+    $scope.card.url = (card.url || "");
     $scope.card.stared = (card.stared || false);
     $scope.card.private = (card.private || false);
     if (card._id) {

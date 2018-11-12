@@ -6,6 +6,7 @@ Meteor.startup(function () {
 });
 
 Meteor.onConnection(function (connection) {
+    console.log("connected:", connection.id, new Date())
     connections.insert({
         connectionId: connection.id,
         username: "",
@@ -13,6 +14,7 @@ Meteor.onConnection(function (connection) {
     });
 
     connection.onClose(function () {
+        console.log("disconnected:", connection.id, new Date())
         connections.remove({
             connectionId: connection.id
         });
