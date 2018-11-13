@@ -76,8 +76,13 @@ card-summary {
 .card.memo.deleted {
   border-left: solid 8px rgba(135,206,250,0.5);
 }
+@keyframes fresh {
+  0% {
+    background-color: LemonChiffon;
+  }
+}
 .card.fresh {
-  background-color: LemonChiffon;
+  animation: fresh 10s ease-out;
 }
 .card.deleted {
   background-color: rgba(0,0,0,0.1);

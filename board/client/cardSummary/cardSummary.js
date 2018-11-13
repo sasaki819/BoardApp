@@ -51,7 +51,7 @@ angular.module("app").component("cardSummary", {
             return ctrl.card.createdBy === (Meteor.user() ? Meteor.user().username : "");
         };
         ctrl.isFresh = function () {
-            return (new Date() - ctrl.card.updatedAt) < 3000;
+            return (new Date() - ctrl.card.updatedAt) < 15000;
         };
         ctrl.cardType = function () {
             if (ctrl.card.hasCheckbox) {
