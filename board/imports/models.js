@@ -11,7 +11,7 @@ if (Meteor.isServer) {
         return cards.find();
     });
     Meteor.publish("users", function usersPublication() {
-        return Meteor.users.find({},{$fields: {username: 1}});
+        return Meteor.users.find({}, { $fields: { username: 1 } });
     });
     Meteor.publish("connections", function connectionsPublication() {
         return connections.find({}, { sort: { timestamp: 1 } });
@@ -49,7 +49,11 @@ Meteor.methods({
         } else {
             newCard.type = "Memo"
         }
-        cards.insert(newCard);
+        if (cards.find({ title: newCard.title }).count > 0) {
+            cards.update({ "title": newCard.title }, newCard);
+        } else {
+            cards.insert(newCard);
+        }
     },
     "cards.remove"(cardId) {
         check(cardId, String);
@@ -73,7 +77,7 @@ Meteor.methods({
                 count: 1
             },
             $set: {
-                updatedBy:Meteor.user() && Meteor.user().username || "Guest",
+                updatedBy: Meteor.user() && Meteor.user().username || "Guest",
                 updatedAt: new Date(),
             }
         });
@@ -86,9 +90,10 @@ Meteor.methods({
                 count: -1
             },
             $set: {
-                updatedBy:Meteor.user() && Meteor.user().username || "Guest",
+                updatedBy: Meteor.user() && Meteor.user().username || "Guest",
                 updatedAt: new Date(),
-            }});
+            }
+        });
     },
     "ping"() {
         const connectionId = this.isSimulation ? Meteor.connection._lastSessionId : this.connection.id;

@@ -54,11 +54,5 @@ angular.module("app").component("toolbar", {
         ctrl.isLoggedIn = function () {
             return Meteor.user();
         };
-    },
-    bindings: {
-        flag: "=",
-        on: "@",
-        off: "@",
-        onToggle: "&",
-    },
+    }
 });
