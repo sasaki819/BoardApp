@@ -8,6 +8,7 @@ angular.module("app").component("cardSummary", {
         ctrl.isFresh = false;
         $scope.$watch("$ctrl.card.updatedAt", function (newVal, oldVal) {
             if (newVal != oldVal) {
+                console.log(arguments);
                 ctrl.isFresh = true;
                 $timeout(function () {
                     ctrl.isFresh = false;
