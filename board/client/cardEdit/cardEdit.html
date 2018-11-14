@@ -1,86 +1,86 @@
 <md-dialog aria-label="card detail" layout="column">
-    <form ng-submit="onSubmit()" autocomplete="off">
-        <md-dialog-content class="md-dialog-content">
-            <div class="cardToolbar" layout="row" layout-align="space-between start">
-                <div>
-                    <toggle-icon class="stared-icon" flag="card.stared" on="star" off="star_border" title="favorite"
-                        on-toggle="">
-                    </toggle-icon>
-                </div>
-                <div flex="1">
-                </div>
-                <div>
-                    <toggle-icon class="private-icon" flag="card.private" on="lock" off="lock_open" title="private"
-                        on-toggle="">
-                    </toggle-icon>
-                    <md-menu ng-show="card._id">
-                        <md-button class="md-icon-button" ng-click="onClickLink($mdMenu, $event)">
-                            <md-icon>
-                                link
-                            </md-icon>
-                        </md-button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="onClickCopyURL('set', 'checked', 'true')">
-                                    <md-icon>
-                                        file_copy
-                                    </md-icon>
-                                    <md-icon>
-                                        check_box
-                                    </md-icon>
-                                    Check
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="onClickCopyURL('set', 'checked', 'false')">
-                                    <md-icon>
-                                        file_copy
-                                    </md-icon>
-                                    <md-icon>
-                                        check_box_outline_blank
-                                    </md-icon>
-                                    Uncheck
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="onClickCopyURL('countup')">
-                                    <md-icon>
-                                        file_copy
-                                    </md-icon>
-                                    <md-icon>
-                                        add_circle
-                                    </md-icon>
-                                    Count up
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="onClickCopyURL('countdown')">
-                                    <md-icon>
-                                        file_copy
-                                    </md-icon>
-                                    <md-icon>
-                                        remove_circle
-                                    </md-icon>
-                                    Count down
-                                </md-button>
-                            </md-menu-item>
-                            <div class="hidden-text" id="hidden-text"></div>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-button class="md-icon-button" ng-if="card.deleted" ng-click="onClickDeletePermanently()" title="delete permanently">
-                        <md-icon class="material-icons">
-                            delete_forever
-                        </md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" ng-if="card.deleted === false" ng-click="onClickDelete()" title="delete">
-                        <md-icon class="material-icons">
-                            delete
-                        </md-icon>
-                    </md-button>
-                </div>
+    <md-dialog-content class="md-dialog-content">
+        <div class="cardToolbar" layout="row" layout-align="space-between start">
+            <div>
+                <toggle-icon class="stared-icon" flag="card.stared" on="star" off="star_border" title="favorite"
+                    on-toggle="">
+                </toggle-icon>
             </div>
+            <div flex="1">
+            </div>
+            <div>
+                <toggle-icon class="private-icon" flag="card.private" on="lock" off="lock_open" title="private"
+                    on-toggle="">
+                </toggle-icon>
+                <md-menu ng-show="card._id">
+                    <md-button class="md-icon-button" ng-click="onClickLink($mdMenu, $event)">
+                        <md-icon>
+                            link
+                        </md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="onClickCopyURL('set', 'checked', 'true')">
+                                <md-icon>
+                                    file_copy
+                                </md-icon>
+                                <md-icon>
+                                    check_box
+                                </md-icon>
+                                Check
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="onClickCopyURL('set', 'checked', 'false')">
+                                <md-icon>
+                                    file_copy
+                                </md-icon>
+                                <md-icon>
+                                    check_box_outline_blank
+                                </md-icon>
+                                Uncheck
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="onClickCopyURL('countup')">
+                                <md-icon>
+                                    file_copy
+                                </md-icon>
+                                <md-icon>
+                                    add_circle
+                                </md-icon>
+                                Count up
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="onClickCopyURL('countdown')">
+                                <md-icon>
+                                    file_copy
+                                </md-icon>
+                                <md-icon>
+                                    remove_circle
+                                </md-icon>
+                                Count down
+                            </md-button>
+                        </md-menu-item>
+                        <div class="hidden-text" id="hidden-text"></div>
+                    </md-menu-content>
+                </md-menu>
+                <md-button class="md-icon-button" ng-if="card.deleted" ng-click="onClickDeletePermanently()" title="delete permanently">
+                    <md-icon class="material-icons">
+                        delete_forever
+                    </md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-if="card.deleted === false" ng-click="onClickDelete()" title="delete">
+                    <md-icon class="material-icons">
+                        delete
+                    </md-icon>
+                </md-button>
+            </div>
+        </div>
 
-            <div layout="column">
+        <div layout="column">
+            <form ng-submit="onSubmit()" autocomplete="off">
                 <md-input-container>
                     <input type="text" name="title" ng-model="card.title" placeholder="Title" required md-autofocus>
                 </md-input-container>
@@ -112,23 +112,22 @@
                     <textarea ng-model="card.description" name="description" aria-label="card.description">
                     </textarea>
                 </md-input-container>
-            </div>
-            <div ng-if="card._id">
-                作成　　：　{{passedTime(card.createdAt)}} ({{card.createdBy}})
-                <br>
-                最終更新：　{{passedTime(card.updatedAt)}} ({{card.updatedBy}})
-            </div>
-            <accordion caption="'card detail'">
-                <pre>{{card|json}}</pre>
-            </accordion>
-        </md-dialog-content>
-        <md-dialog-actions>
-            <md-button class="md-raised" ng-click="close()">
-                キャンセル
-            </md-button>
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="card.title === ''" ng-bind="ok"
-                aria-label="ok">
-            </md-button>
-        </md-dialog-actions>
-    </form>
+            </form>
+        </div>
+        <div ng-if="card._id">
+            作成　　：　{{passedTime(card.createdAt)}} ({{card.createdBy}})
+            <br>
+            最終更新：　{{passedTime(card.updatedAt)}} ({{card.updatedBy}})
+        </div>
+        <accordion caption="'card detail'">
+            <pre>{{card|json}}</pre>
+        </accordion>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button class="md-raised" ng-click="close()">
+            キャンセル
+        </md-button>
+        <md-button class="md-raised md-primary" ng-disabled="card.title === ''" ng-bind="ok" aria-label="ok" ng-click="onSubmit()">
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>
