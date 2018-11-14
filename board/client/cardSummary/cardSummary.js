@@ -7,13 +7,13 @@ angular.module("app").component("cardSummary", {
         const ctrl = this;
         ctrl.isFresh = false;
         $scope.$watch("$ctrl.card.updatedAt", function (newVal, oldVal) {
-            if (newVal != oldVal) {
-                console.log(arguments);
-                ctrl.isFresh = true;
-                $timeout(function () {
-                    ctrl.isFresh = false;
-                }, 100);
+            if (newVal == oldVal && (newVal != new Date().toString())) {
+                return;
             }
+            ctrl.isFresh = true;
+            $timeout(function () {
+                ctrl.isFresh = false;
+            }, 100);
         });
         ctrl.onClickFavorite = function () {
             Meteor.call("cards.update", ctrl.card._id, { stared: ctrl.card.stared });
