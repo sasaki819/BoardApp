@@ -83,7 +83,6 @@ angular.module("app").controller("cardEditController", function ($scope, $mdDial
         return updatedAt;
     };
     $scope.onSubmit = function () {
-        console.log(arguments);
         if ($scope.card.deleted) {
             $scope.card.deleted = false;
         }
