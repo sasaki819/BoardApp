@@ -120,9 +120,6 @@
             <br>
             最終更新：　{{passedTime(card.updatedAt)}} ({{card.updatedBy}})
         </div>
-        <accordion caption="'card detail'">
-            <pre>{{card|json}}</pre>
-        </accordion>
     </md-dialog-content>
     <md-dialog-actions>
         <md-button class="md-raised" ng-click="close()">
