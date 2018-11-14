@@ -15,16 +15,11 @@ body {
   height:64px;
 }
 .card {
-  /* display: inline-block;
-  box-sizing: border-box; */
   min-width: 344px; /* 344 fit's width of xperia, also 164px(half size) may nice*/
   max-width: 496px; /* 496 fit's height of xperia */
-  /* min-height: 92px; */
-  /* margin: 8px 0px 0px 8px; */
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all  0.3s ease;
+  background-color: white;
+  -webkit-transition: background-color 15s ease-out;
+  transition: background-color 15s ease-out;
 }
 card-summary {
   padding:0px;
@@ -76,13 +71,10 @@ card-summary {
 .card.memo.deleted {
   border-left: solid 8px rgba(135,206,250,0.5);
 }
-@keyframes fresh {
-  0% {
-    background-color: LemonChiffon;
-  }
-}
 .card.fresh {
-  animation: fresh 10s ease-out;
+  background-color: LemonChiffon;
+  -webkit-transition: background-color 0.1s ease;
+  transition: background-color 0.1s ease;
 }
 .card.deleted {
   background-color: rgba(0,0,0,0.1);

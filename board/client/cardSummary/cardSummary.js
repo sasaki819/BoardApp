@@ -3,8 +3,17 @@ import cardEditTemplate from "../cardEdit/cardEdit.html";
 
 angular.module("app").component("cardSummary", {
     templateUrl: cardSummaryTemplate,
-    controller: function ($scope, $mdDialog) {
+    controller: function ($scope, $mdDialog, $timeout) {
         const ctrl = this;
+        ctrl.isFresh = false;
+        $scope.$watch("$ctrl.card.updatedAt", function (newVal, oldVal) {
+            if (newVal != oldVal) {
+                ctrl.isFresh = true;
+                $timeout(function () {
+                    ctrl.isFresh = false;
+                }, 100);
+            }
+        });
         ctrl.onClickFavorite = function () {
             Meteor.call("cards.update", ctrl.card._id, { stared: ctrl.card.stared });
         };
@@ -35,7 +44,7 @@ angular.module("app").component("cardSummary", {
                 clickOutsideToClose: true
             });
         };
-        ctrl.onClickRestore = function($event) {
+        ctrl.onClickRestore = function ($event) {
             $mdDialog.show({
                 templateUrl: cardEditTemplate,
                 controller: "cardEditController",
@@ -50,16 +59,16 @@ angular.module("app").component("cardSummary", {
         ctrl.isCreatedByMyself = function () {
             return ctrl.card.createdBy === (Meteor.user() ? Meteor.user().username : "");
         };
-        ctrl.isFresh = function () {
-            return (new Date() - ctrl.card.updatedAt) < 15000;
-        };
+        // ctrl.isFresh = function () {
+        //     return (new Date() - ctrl.card.updatedAt) < 10000;
+        // };
         ctrl.cardType = function () {
             if (ctrl.card.hasCheckbox) {
-                ctrl.card.type="Task"
-            } else if (ctrl.card.hasCounter){
-                ctrl.card.type="Stock"
+                ctrl.card.type = "Task"
+            } else if (ctrl.card.hasCounter) {
+                ctrl.card.type = "Stock"
             } else {
-                ctrl.card.type="Memo"
+                ctrl.card.type = "Memo"
             }
             return ctrl.card.type;
         };

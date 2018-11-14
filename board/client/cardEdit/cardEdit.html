@@ -79,8 +79,8 @@
             </div>
         </div>
 
-        <div layout="column">
-            <form ng-submit="onSubmit()" autocomplete="off">
+        <form ng-submit="onSubmit()" autocomplete="off">
+            <div layout="column">
                 <md-input-container>
                     <input type="text" name="title" ng-model="card.title" placeholder="Title" required md-autofocus>
                 </md-input-container>
@@ -112,8 +112,8 @@
                     <textarea ng-model="card.description" name="description" aria-label="card.description">
                     </textarea>
                 </md-input-container>
-            </form>
-        </div>
+            </div>
+        </form>
         <div ng-if="card._id">
             作成　　：　{{passedTime(card.createdAt)}} ({{card.createdBy}})
             <br>
